@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Nexora Foundation</title>
+  <meta name="description" content="Nexora Foundation - Restoran, Təhsil, Biznes xidmətləri" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --bg2: #ffffff;
+      --bg3: #f0f2f5;
+      --text: #1a1a2e;
+      --text2: #4a4a6a;
+      --text3: #888;
+      --border: #e0e3ef;
+      --primary: #6c63ff;
+      --primary2: #5a52e0;
+      --primary-light: rgba(108,99,255,0.12);
+      --accent: #ff6b6b;
+      --accent2: #ffd166;
+      --accent3: #06d6a0;
+      --card-shadow: 0 4px 24px rgba(108,99,255,0.10);
+      --card-hover: 0 8px 40px rgba(108,99,255,0.18);
+      --navbar-bg: rgba(255,255,255,0.95);
+      --iframe-bg: #f0f2f5;
+      --modal-bg: rgba(0,0,0,0.55);
+    }
+    [data-theme="dark"] {
+      --bg: #0f0f1a;
+      --bg2: #1a1a2e;
+      --bg3: #16213e;
+      --text: #e8e8f0;
+      --text2: #b0b0c8;
+      --text3: #666;
+      --border: #2a2a4a;
+      --primary: #7c73ff;
+      --primary2: #6c63ff;
+      --primary-light: rgba(124,115,255,0.15);
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      --card-hover: 0 8px 40px rgba(124,115,255,0.25);
+      --navbar-bg: rgba(26,26,46,0.97);
+      --iframe-bg: #0f0f1a;
+      --modal-bg: rgba(0,0,0,0.75);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex; align-items: center;
+      padding: 0 20px;
+      gap: 12px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .navbar-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; cursor: pointer;
+      flex-shrink: 0;
+    }
+    .navbar-logo img {
+      height: 40px; width: 40px; object-fit: contain; border-radius: 8px;
+    }
+    .navbar-logo-text {
+      font-size: 20px; font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+    .navbar-spacer { flex: 1; }
+    .navbar-actions { display: flex; align-items: center; gap: 8px; }
+    .theme-btn {
+      background: var(--primary-light);
+      border: none; cursor: pointer;
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary); font-size: 16px;
+      transition: background 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .theme-btn:hover { background: var(--primary); color: #fff; transform: scale(1.1); }
+    .admin-btn {
+      background: var(--primary-light);
+      border: none; cursor: pointer;
+      padding: 8px 16px; border-radius: 20px;
+      display: flex; align-items: center; gap: 6px;
+      color: var(--primary); font-size: 13px; font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .admin-btn:hover { background: var(--primary); color: #fff; }
+
+    /* ─── MAIN CONTENT ─── */
+    .main-content {
+      margin-top: 64px;
+      padding: 0;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* ─── HOME VIEW ─── */
+    #view-home {
+      display: block;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #a78bfa 50%, #06d6a0 100%);
+      padding: 60px 20px 50px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-logo {
+      width: 90px; height: 90px; object-fit: contain;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800; color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: rgba(255,255,255,0.88);
+      max-width: 500px; margin: 0 auto;
+    }
+
+    /* ─── SECTION CARDS ─── */
+    .sections-container {
+      padding: 40px 20px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-title {
+      font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text3);
+      margin-bottom: 16px; margin-top: 32px;
+    }
+    .section-title:first-child { margin-top: 0; }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 8px;
+    }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-hover);
+      border-color: var(--primary);
+    }
+    .card:active { transform: translateY(-2px); }
+    .card-thumbnail {
+      width: 100%; height: 160px;
+      background: var(--bg3);
+      position: relative; overflow: hidden;
+    }
+    .card-thumb-iframe {
+      width: 250%; height: 250%;
+      border: none; pointer-events: none;
+      transform: scale(0.4);
+      transform-origin: top left;
+      position: absolute; top: 0; left: 0;
+    }
+    .card-thumb-overlay {
+      position: absolute; inset: 0;
+      background: transparent;
+      z-index: 2;
+    }
+    .card-thumb-icon {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+      z-index: 3;
+      background: linear-gradient(135deg, var(--primary-light), transparent);
+    }
+    .card-body { padding: 18px 18px 20px; }
+    .card-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .tag-restoran { background: rgba(255,107,107,0.12); color: #ff6b6b; }
+    .tag-tehsil { background: rgba(6,214,160,0.12); color: #06d6a0; }
+    .tag-biznes { background: rgba(255,209,102,0.14); color: #e5a000; }
+    .card-name {
+      font-size: 17px; font-weight: 700; color: var(--text);
+      margin-bottom: 6px; line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 13px; color: var(--text2); line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .card-open-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: none; border-radius: 10px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.2s, color 0.2s;
+    }
+    .card-open-btn:hover { background: var(--primary); color: #fff; }
+    .card-open-btn i { font-size: 11px; }
+
+    /* ─── ABOUT SECTION ─── */
+    .about-section {
+      margin: 0; padding: 40px 20px;
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+    }
+    .about-inner {
+      max-width: 700px; margin: 0 auto; text-align: center;
+    }
+    .about-inner h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 800; color: var(--text);
+      margin-bottom: 14px;
+    }
+    .about-inner p {
+      font-size: 16px; color: var(--text2); line-height: 1.7;
+      margin-bottom: 30px;
+    }
+    .contact-cards {
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    }
+    .contact-card {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px 20px;
+      text-decoration: none; color: var(--text);
+      font-size: 14px; font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      min-width: 180px;
+    }
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-shadow);
+      border-color: var(--primary);
+    }
+    .contact-card .cc-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .cc-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+    .cc-wa { background: #25d366; color: #fff; }
+    .contact-card .cc-label { font-size: 11px; color: var(--text3); }
+    .contact-card .cc-val { font-size: 14px; font-weight: 600; color: var(--text); }
+
+    /* ─── DETAIL VIEW ─── */
+    #view-detail { display: none; }
+    .detail-header {
+      position: sticky; top: 64px; z-index: 50;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--primary-light); color: var(--primary);
+      border: none; border-radius: 10px;
+      padding: 8px 14px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .back-btn:hover { background: var(--primary); color: #fff; }
+    .detail-title {
+      font-size: 16px; font-weight: 700; color: var(--text);
+      flex: 1; min-width: 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .order-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff; border: none; border-radius: 10px;
+      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .order-btn:hover { opacity: 0.9; transform: scale(1.03); }
+    .iframe-container {
+      width: 100%;
+      height: calc(100vh - 64px - 58px);
+      background: var(--iframe-bg);
+      position: relative;
+    }
+    .site-iframe {
+      width: 100%; height: 100%;
+      border: none; display: block;
+    }
+    .iframe-loading {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: var(--iframe-bg);
+      gap: 14px; z-index: 5;
+    }
+    .iframe-loading .spin {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 4px solid var(--border);
+      border-top-color: var(--primary);
+      animation: spin 0.8s linear infinite;
+    }
+    .iframe-loading p { font-size: 14px; color: var(--text2); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .iframe-error {
+      position: absolute; inset: 0;
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: var(--iframe-bg); gap: 14px; z-index: 4;
+      padding: 20px; text-align: center;
+    }
+    .iframe-error i { font-size: 40px; color: var(--text3); }
+    .iframe-error p { font-size: 14px; color: var(--text2); max-width: 320px; }
+    .iframe-error a {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--primary); color: #fff;
+      border-radius: 10px; padding: 10px 20px;
+      text-decoration: none; font-size: 14px; font-weight: 600;
+    }
+
+    /* ─── ADMIN MODAL ─── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: var(--modal-bg);
+      backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      width: 100%; max-width: 380px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .modal h2 {
+      font-size: 20px; font-weight: 700; color: var(--text);
+      margin-bottom: 6px; text-align: center;
+    }
+    .modal p.modal-sub {
+      font-size: 13px; color: var(--text3); text-align: center; margin-bottom: 24px;
+    }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--bg3); border: none; border-radius: 8px;
+      width: 32px; height: 32px; cursor: pointer; color: var(--text2);
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .modal-close:hover { background: var(--accent); color: #fff; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 12px; font-weight: 600;
+      color: var(--text2); margin-bottom: 6px; letter-spacing: 0.5px;
+    }
+    .form-group input {
+      width: 100%; padding: 11px 14px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 10px; font-size: 14px; color: var(--text);
+      outline: none; transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .form-group input:focus { border-color: var(--primary); }
+    .form-error {
+      font-size: 12px; color: var(--accent);
+      margin-bottom: 12px; display: none; text-align: center;
+    }
+    .btn-primary {
+      width: 100%; padding: 12px;
+      background: linear-gradient(135deg, var(--primary), #a78bfa);
+      color: #fff; border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      font-family: inherit; transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: scale(1.01); }
+
+    /* ─── ADMIN PANEL ─── */
+    #view-admin { display: none; }
+    .admin-layout {
+      display: grid; grid-template-columns: 220px 1fr;
+      height: calc(100vh - 64px);
+    }
+    .admin-sidebar {
+      background: var(--bg2); border-right: 1px solid var(--border);
+      padding: 24px 16px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .admin-sidebar h3 {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--text3);
+      padding: 0 12px; margin-bottom: 8px; margin-top: 8px;
+    }
+    .admin-sidebar h3:first-child { margin-top: 0; }
+    .admin-nav-btn {
+      display: flex; align-items: center; gap: 10px;
+      background: none; border: none; cursor: pointer;
+      padding: 10px 12px; border-radius: 10px;
+      font-size: 14px; font-weight: 500; color: var(--text2);
+      transition: background 0.2s, color 0.2s; text-align: left; width: 100%;
+    }
+    .admin-nav-btn:hover, .admin-nav-btn.active {
+      background: var(--primary-light); color: var(--primary);
+    }
+    .admin-nav-btn i { width: 18px; text-align: center; }
+    .admin-logout-btn {
+      margin-top: auto;
+      display: flex; align-items: center; gap: 10px;
+      background: none; border: 1px solid var(--border);
+      cursor: pointer; padding: 10px 12px; border-radius: 10px;
+      font-size: 14px; color: var(--accent); transition: background 0.2s;
+    }
+    .admin-logout-btn:hover { background: rgba(255,107,107,0.1); }
+    .admin-main {
+      padding: 30px; overflow-y: auto; background: var(--bg);
+    }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+    .admin-section h2 {
+      font-size: 22px; font-weight: 700; color: var(--text);
+      margin-bottom: 20px;
+    }
+    .note-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      margin-bottom: 16px; position: relative;
+    }
+    .note-card h3 {
+      font-size: 14px; font-weight: 700; color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px;
+    }
+    .note-content {
+      font-size: 16px; color: var(--text); line-height: 1.6;
+      background: var(--bg3); border-radius: 10px; padding: 16px;
+      border: 1px solid var(--border);
+    }
+    .admin-stats {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px; margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px; text-align: center;
+    }
+    .stat-card .stat-num {
+      font-size: 28px; font-weight: 800; color: var(--primary);
+    }
+    .stat-card .stat-label {
+      font-size: 12px; color: var(--text3); margin-top: 4px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      .navbar { padding: 0 14px; gap: 8px; }
+      .navbar-logo-text { font-size: 17px; }
+      .admin-btn span { display: none; }
+      .hero { padding: 40px 14px 36px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .sections-container { padding: 28px 14px; }
+      .about-section { padding: 30px 14px; }
+      .contact-cards { flex-direction: column; }
+      .contact-card { min-width: 0; width: 100%; }
+      .detail-title { display: none; }
+      .admin-layout { grid-template-columns: 1fr; }
+      .admin-sidebar { flex-direction: row; flex-wrap: wrap; padding: 12px; border-right: none; border-bottom: 1px solid var(--border); height: auto; }
+      .admin-sidebar h3 { width: 100%; }
+      .admin-main { padding: 20px 14px; }
+      .admin-logout-btn { margin-top: 0; }
+    }
+    @media (max-width: 420px) {
+      .order-btn span { display: none; }
+      .detail-header { gap: 8px; padding: 8px 12px; }
+    }
+
+    /* ─── SCROLL BAR ─── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg3); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+<nav class="navbar">
+  <div class="navbar-logo" onclick="goHome()">
+    <img id="nav-logo" src="logo.svg" alt="Nexora" onerror="this.style.display='none'" />
+    <span class="navbar-logo-text">Nexora</span>
+  </div>
+  <div class="navbar-spacer"></div>
+  <div class="navbar-actions">
+    <button class="theme-btn" onclick="toggleTheme()" title="Tema dəyiş">
+      <i id="theme-icon" class="fas fa-moon"></i>
+    </button>
+    <button class="admin-btn" onclick="openAdminModal()">
+      <i class="fas fa-lock"></i>
+      <span>Admin</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ MAIN CONTENT ═══════════════════════ -->
+<main class="main-content">
+
+  <!-- ──────── HOME VIEW ──────── -->
+  <div id="view-home">
+    <section class="hero">
+      <div class="hero-content">
+        <img id="hero-logo" src="logo.svg" alt="Nexora" class="hero-logo" onerror="this.style.display='none'" />
+        <h1>Nexora Foundation</h1>
+        <p>Restoran, Təhsil və Biznes xidmətlərini bir platformada kəşf edin</p>
+      </div>
+    </section>
+
+    <div class="sections-container">
+
+      <!-- RESTORAN -->
+      <div class="section-title">🍽️ Restoran</div>
+      <div class="cards-grid" id="grid-restoran"></div>
+
+      <!-- TƏHSİL -->
+      <div class="section-title">🎓 Təhsil</div>
+      <div class="cards-grid" id="grid-tehsil"></div>
+
+      <!-- BİZNES -->
+      <div class="section-title">💼 Biznes</div>
+      <div class="cards-grid" id="grid-biznes"></div>
+
+    </div>
+
+    <!-- HAQQINDA / ƏLAQƏ -->
+    <section class="about-section">
+      <div class="about-inner">
+        <h2>Salam, Biz Nexora</h2>
+        <p>
+          Nexora Foundation olaraq müxtəlif sahələrdə keyfiyyətli xidmətlər təqdim edirik.
+          Restoran, Təhsil və Biznes istiqamətlərindəki platformalarımızla sizə daha yaxşı
+          bir gələcək qurumağa yardım edirik.
+        </p>
+        <div class="contact-cards">
+          <a href="https://www.instagram.com/nexora.foundation/" target="_blank" rel="noopener" class="contact-card">
+            <div class="cc-icon cc-ig"><i class="fab fa-instagram"></i></div>
+            <div>
+              <div class="cc-label">Instagram</div>
+              <div class="cc-val">@nexora.foundation</div>
+            </div>
+          </a>
+          <a href="https://wa.me/994559406018" target="_blank" rel="noopener" class="contact-card">
+            <div class="cc-icon cc-wa"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div class="cc-label">WhatsApp</div>
+              <div class="cc-val">+994 55 940 60 18</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ──────── DETAIL VIEW (Iframe) ──────── -->
+  <div id="view-detail">
+    <div class="detail-header">
+      <button class="back-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+        <span>Geri</span>
+      </button>
+      <span class="detail-title" id="detail-title">Yüklənir...</span>
+      <button class="order-btn" id="detail-order-btn" onclick="orderNow()">
+        <i class="fab fa-whatsapp"></i>
+        <span>Sifariş et</span>
+      </button>
+    </div>
+    <div class="iframe-container">
+      <div class="iframe-loading" id="iframe-loading">
+        <div class="spin"></div>
+        <p>Sayt yüklənir...</p>
+      </div>
+      <div class="iframe-error" id="iframe-error">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Bu sayt iframe içərisində açılmağa icazə vermir. Saytı yeni sekmede açmaq üçün aşağıdakı düyməni istifadə edin.</p>
+        <a id="iframe-open-link" href="#" target="_blank" rel="noopener">
+          <i class="fas fa-external-link-alt"></i> Yeni sekmede aç
+        </a>
+      </div>
+      <iframe id="main-iframe" class="site-iframe" src="about:blank" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation-by-user-activation" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- ──────── ADMIN VIEW ──────── -->
+  <div id="view-admin">
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <h3>Panel</h3>
+        <button class="admin-nav-btn active" onclick="adminNav('dashboard')" id="nav-dashboard">
+          <i class="fas fa-chart-pie"></i> Dashboard
+        </button>
+        <button class="admin-nav-btn" onclick="adminNav('notes')" id="nav-notes">
+          <i class="fas fa-sticky-note"></i> Notlar
+        </button>
+        <h3>Sistem</h3>
+        <button class="admin-nav-btn" onclick="adminNav('sites')" id="nav-sites">
+          <i class="fas fa-globe"></i> Saytlar
+        </button>
+        <button class="admin-logout-btn" onclick="adminLogout()">
+          <i class="fas fa-sign-out-alt"></i> Çıxış
+        </button>
+      </aside>
+      <div class="admin-main">
+
+        <div class="admin-section active" id="admin-dashboard">
+          <h2>Dashboard</h2>
+          <div class="admin-stats">
+            <div class="stat-card">
+              <div class="stat-num">4</div>
+              <div class="stat-label">Restoran</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">3</div>
+              <div class="stat-label">Təhsil</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">3</div>
+              <div class="stat-label">Biznes</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">10</div>
+              <div class="stat-label">Ümumi sayt</div>
+            </div>
+          </div>
+          <div class="note-card">
+            <h3><i class="fas fa-info-circle"></i> &nbsp;Məlumat</h3>
+            <div class="note-content">
+              Admin panelinə xoş gəldiniz. Sol menyudan bölmələrə keçid edə bilərsiniz.
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-section" id="admin-notes">
+          <h2>Notlar</h2>
+          <div class="note-card">
+            <h3>📝 Not 1</h3>
+            <div class="note-content">salam</div>
+          </div>
+          <div class="note-card">
+            <h3>📝 Not 2</h3>
+            <div class="note-content">pendir</div>
+          </div>
+        </div>
+
+        <div class="admin-section" id="admin-sites">
+          <h2>Saytlar</h2>
+          <div id="admin-sites-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════ ADMIN LOGIN MODAL ═══════════════════════ -->
+<div class="modal-overlay" id="admin-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAdminModal()"><i class="fas fa-times"></i></button>
+    <h2><i class="fas fa-shield-alt" style="color:var(--primary)"></i> &nbsp;Admin Girişi</h2>
+    <p class="modal-sub">Daxil olmaq üçün məlumatlarınızı daxil edin</p>
+    <div class="form-group">
+      <label>İstifadəçi adı</label>
+      <input type="text" id="admin-user" placeholder="admin" autocomplete="off" />
+    </div>
+    <div class="form-group">
+      <label>Şifrə</label>
+      <input type="password" id="admin-pass" placeholder="••••••" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()" />
+    </div>
+    <p class="form-error" id="login-error">İstifadəçi adı və ya şifrə yanlışdır.</p>
+    <button class="btn-primary" onclick="doLogin()">Daxil ol</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SCRIPT ═══════════════════════ -->
+<script>
+// ──────────────────────────────────────────────
+// DATA
+// ──────────────────────────────────────────────
+const SITES = {
+  restoran: [
+    { id:'r1', name:'Crepes Bakü', url:'https://crepes-baku.onrender.com/', desc:'Fransız krep mətbəxi', emoji:'🥞' },
+    { id:'r2', name:'Zeytun Restoran', url:'https://zeytunrestoran.onrender.com/', desc:'Azərbaycan milli mətbəxi', emoji:'🫒' },
+    { id:'r3', name:'Sushi GGYO', url:'https://sushi-ggyo.onrender.com/', desc:'Yapon sushi restoranı', emoji:'🍣' },
+    { id:'r4', name:'FHG Restoran', url:'https://fhg-xfcs.onrender.com/', desc:'Seçilmiş mətbəx zövqü', emoji:'🍽️' },
+  ],
+  tehsil: [
+    { id:'t1', name:'Abify Edu', url:'https://abify-edu.vercel.app/', desc:'Müasir təhsil platforması', emoji:'📚' },
+    { id:'t2', name:'EduUnify', url:'https://edu-unify.vercel.app/', desc:'Birləşdirilmiş təhsil sistemi', emoji:'🎓' },
+    { id:'t3', name:'CareerLands', url:'https://careerlandscuhi.onrender.com/', desc:'Karyera və ixtisaslaşma', emoji:'💡' },
+  ],
+  biznes: [
+    { id:'b1', name:'SDS Platforma', url:'https://sddddddddddddddddddd.onrender.com/', desc:'Biznes idarəetmə həlləri', emoji:'📊' },
+    { id:'b2', name:'Berber Studio', url:'https://berber-9ojn.onrender.com/', desc:'Peşəkar berber xidməti', emoji:'✂️' },
+    { id:'b3', name:'RM Solutions', url:'https://rm-falan.onrender.com/', desc:'Resurs idarəetmə sistemi', emoji:'⚙️' },
+  ],
+};
+
+const CATEGORY_LABELS = {
+  restoran: 'Restoran',
+  tehsil: 'Təhsil',
+  biznes: 'Biznes',
+};
+
+const WA_NUMBER = '994559406018';
+
+// ──────────────────────────────────────────────
+// STATE
+// ──────────────────────────────────────────────
+let currentSite = null;
+let savedScrollY = 0;
+let isAdmin = false;
+
+// ──────────────────────────────────────────────
+// THEME
+// ──────────────────────────────────────────────
+(function initTheme() {
+  const saved = localStorage.getItem('nexora-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  document.getElementById('theme-icon').className =
+    saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+})();
+
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('nexora-theme', next);
+  document.getElementById('theme-icon').className =
+    next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+}
+
+// ──────────────────────────────────────────────
+// RENDER CARDS
+// ──────────────────────────────────────────────
+function renderCards() {
+  Object.keys(SITES).forEach(cat => {
+    const grid = document.getElementById('grid-' + cat);
+    if (!grid) return;
+    grid.innerHTML = '';
+    SITES[cat].forEach(site => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', site.name + ' saytını aç');
+      card.innerHTML = `
+        <div class="card-thumbnail">
+          <div class="card-thumb-icon">${site.emoji}</div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag tag-${cat}">${CATEGORY_LABELS[cat]}</span>
+          <div class="card-name">${site.name}</div>
+          <div class="card-desc">${site.desc}</div>
+          <button class="card-open-btn" onclick="openSite(event,'${cat}','${site.id}')">
+            <i class="fas fa-eye"></i> Aç
+          </button>
+        </div>
+      `;
+      card.addEventListener('click', (e) => {
+        if (!e.target.closest('.card-open-btn')) openSite(e, cat, site.id);
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') openSite(e, cat, site.id);
+      });
+      grid.appendChild(card);
+    });
+  });
+}
+
+// ──────────────────────────────────────────────
+// NAVIGATION — URL NEVER CHANGES
+// ──────────────────────────────────────────────
+function showView(name) {
+  ['home', 'detail', 'admin'].forEach(v => {
+    document.getElementById('view-' + v).style.display = 'none';
+  });
+  document.getElementById('view-' + name).style.display = 'block';
+}
+
+function goHome() {
+  document.getElementById('main-iframe').src = 'about:blank';
+  document.getElementById('iframe-error').style.display = 'none';
+  document.getElementById('iframe-loading').style.display = 'flex';
+  currentSite = null;
+  showView('home');
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+  });
+}
+
+function goBack() {
+  goHome();
+}
+
+function openSite(e, cat, id) {
+  e.stopPropagation();
+  const all = Object.values(SITES).flat();
+  const site = all.find(s => s.id === id);
+  if (!site) return;
+  savedScrollY = window.scrollY;
+  currentSite = { ...site, cat };
+  document.getElementById('detail-title').textContent = site.name;
+  document.getElementById('iframe-open-link').href = site.url;
+  document.getElementById('iframe-loading').style.display = 'flex';
+  document.getElementById('iframe-error').style.display = 'none';
+  showView('detail');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  loadIframe(site.url);
+}
+
+// ──────────────────────────────────────────────
+// IFRAME LOADING
+// ──────────────────────────────────────────────
+let iframeTimer = null;
+function loadIframe(url) {
+  const iframe = document.getElementById('main-iframe');
+  const loading = document.getElementById('iframe-loading');
+  const errDiv = document.getElementById('iframe-error');
+
+  loading.style.display = 'flex';
+  errDiv.style.display = 'none';
+  iframe.src = 'about:blank';
+
+  clearTimeout(iframeTimer);
+
+  // Give a short delay then set src
+  setTimeout(() => {
+    iframe.src = url;
+  }, 100);
+
+  // Timeout fallback - if loading takes more than 12s, show error
+  iframeTimer = setTimeout(() => {
+    loading.style.display = 'none';
+    errDiv.style.display = 'flex';
+  }, 12000);
+
+  iframe.onload = () => {
+    clearTimeout(iframeTimer);
+    loading.style.display = 'none';
+    try {
+      // Check if iframe content is accessible (same-origin) - for cross-origin this throws
+      const test = iframe.contentWindow.location.href;
+    } catch(ex) {
+      // Cross-origin but loaded OK
+    }
+    errDiv.style.display = 'none';
+  };
+
+  iframe.onerror = () => {
+    clearTimeout(iframeTimer);
+    loading.style.display = 'none';
+    errDiv.style.display = 'flex';
+  };
+}
+
+// ──────────────────────────────────────────────
+// ORDER BUTTON → WHATSAPP
+// ──────────────────────────────────────────────
+function orderNow() {
+  if (!currentSite) return;
+  const catLabel = CATEGORY_LABELS[currentSite.cat] || '';
+  const msg = encodeURIComponent(
+    `Salam! 👋\n\nMən *${currentSite.name}* saytından sifariş vermək istəyirəm.\n\nKateqoriya: ${catLabel}\nSayt: ${currentSite.url}\n\nXahiş edirəm mənə kömək edəsiniz.`
+  );
+  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+}
+
+// ──────────────────────────────────────────────
+// ADMIN LOGIN
+// ──────────────────────────────────────────────
+function openAdminModal() {
+  document.getElementById('admin-modal').classList.add('active');
+  setTimeout(() => document.getElementById('admin-user').focus(), 100);
+}
+function closeAdminModal() {
+  document.getElementById('admin-modal').classList.remove('active');
+  document.getElementById('login-error').style.display = 'none';
+  document.getElementById('admin-user').value = '';
+  document.getElementById('admin-pass').value = '';
+}
+document.getElementById('admin-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+function doLogin() {
+  const u = document.getElementById('admin-user').value.trim();
+  const p = document.getElementById('admin-pass').value;
+  if (u === 'admin' && p === '0618') {
+    isAdmin = true;
+    closeAdminModal();
+    savedScrollY = window.scrollY;
+    showView('admin');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    renderAdminSites();
+    document.getElementById('login-error').style.display = 'none';
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('admin-pass').value = '';
+  }
+}
+function adminLogout() {
+  isAdmin = false;
+  showView('home');
+  requestAnimationFrame(() => window.scrollTo({ top: savedScrollY, behavior: 'instant' }));
+}
+
+// ──────────────────────────────────────────────
+// ADMIN NAVIGATION
+// ──────────────────────────────────────────────
+function adminNav(section) {
+  ['dashboard', 'notes', 'sites'].forEach(s => {
+    document.getElementById('admin-' + s).classList.remove('active');
+    document.getElementById('nav-' + s).classList.remove('active');
+  });
+  document.getElementById('admin-' + section).classList.add('active');
+  document.getElementById('nav-' + section).classList.add('active');
+}
+
+function renderAdminSites() {
+  const container = document.getElementById('admin-sites-list');
+  let html = '';
+  Object.keys(SITES).forEach(cat => {
+    html += `<h3 style="font-size:13px;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:20px 0 10px;">${CATEGORY_LABELS[cat]}</h3>`;
+    SITES[cat].forEach(site => {
+      html += `
+        <div class="note-card" style="padding:16px 20px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <span style="font-size:22px;">${site.emoji}</span>
+            <div style="flex:1;min-width:0;">
+              <div style="font-weight:600;font-size:15px;color:var(--text);">${site.name}</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:2px;">${site.url}</div>
+            </div>
+            <a href="${site.url}" target="_blank" style="background:var(--primary-light);color:var(--primary);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;">
+              <i class="fas fa-external-link-alt"></i> Aç
+            </a>
+          </div>
+        </div>`;
+    });
+  });
+  container.innerHTML = html;
+}
+
+// ──────────────────────────────────────────────
+// INIT
+// ──────────────────────────────────────────────
+renderCards();
+showView('home');
+</script>
+</body>
+</html>
