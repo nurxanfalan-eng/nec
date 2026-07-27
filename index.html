@@ -1,52 +1,69 @@
 <!DOCTYPE html>
-<html lang="az">
+<html lang="az" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Nexora Foundation</title>
-  <meta name="description" content="Nexora Foundation - Restoran, Təhsil, Biznes xidmətləri" />
+  <meta name="description" content="Nexora Foundation - Professional digital services: websites, QR menus, SMM, graphic design, 3D modeling" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+    /* ──────────────────────────────────────────
+       CSS VARIABLES
+    ────────────────────────────────────────── */
     :root {
-      --bg: #f8f9fa;
-      --bg2: #ffffff;
-      --bg3: #f0f2f5;
-      --text: #1a1a2e;
-      --text2: #4a4a6a;
-      --text3: #888;
-      --border: #e0e3ef;
-      --primary: #6c63ff;
-      --primary2: #5a52e0;
-      --primary-light: rgba(108,99,255,0.12);
-      --accent: #ff6b6b;
-      --accent2: #ffd166;
-      --accent3: #06d6a0;
-      --card-shadow: 0 4px 24px rgba(108,99,255,0.10);
-      --card-hover: 0 8px 40px rgba(108,99,255,0.18);
-      --navbar-bg: rgba(255,255,255,0.95);
-      --iframe-bg: #f0f2f5;
-      --modal-bg: rgba(0,0,0,0.55);
+      /* Light theme (milk color base) */
+      --bg:         #f5f0eb;
+      --bg2:        #ede8e2;
+      --bg3:        #e8e2db;
+      --text:       #1a1410;
+      --text2:      #4a3f35;
+      --text3:      #8a7a6e;
+      --border:     #d4c8bc;
+      --primary:    #c8922a;
+      --primary2:   #b07820;
+      --primary-light: rgba(200,146,42,0.14);
+      --accent:     #d4432a;
+      --accent2:    #e8a020;
+      --accent3:    #2a9d6e;
+      --gold:       #c8922a;
+      --gold2:      #e8b84a;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      --card-hover:  0 12px 40px rgba(200,146,42,0.22);
+      --navbar-bg:   rgba(245,240,235,0.96);
+      --hero-overlay: rgba(245,240,235,0.3);
+      --modal-bg:    rgba(0,0,0,0.55);
+      --section-bg:  #ede8e2;
     }
     [data-theme="dark"] {
-      --bg: #0f0f1a;
-      --bg2: #1a1a2e;
-      --bg3: #16213e;
-      --text: #e8e8f0;
-      --text2: #b0b0c8;
-      --text3: #666;
-      --border: #2a2a4a;
-      --primary: #7c73ff;
-      --primary2: #6c63ff;
-      --primary-light: rgba(124,115,255,0.15);
-      --card-shadow: 0 4px 24px rgba(0,0,0,0.3);
-      --card-hover: 0 8px 40px rgba(124,115,255,0.25);
-      --navbar-bg: rgba(26,26,46,0.97);
-      --iframe-bg: #0f0f1a;
-      --modal-bg: rgba(0,0,0,0.75);
+      --bg:         #0d0c0a;
+      --bg2:        #161410;
+      --bg3:        #1e1b16;
+      --text:       #f0e8d8;
+      --text2:      #c0b090;
+      --text3:      #6a5f4a;
+      --border:     #2e2820;
+      --primary:    #d4a030;
+      --primary2:   #c09020;
+      --primary-light: rgba(212,160,48,0.15);
+      --accent:     #e05030;
+      --accent2:    #f0c040;
+      --accent3:    #30c080;
+      --gold:       #d4a030;
+      --gold2:      #f0c858;
+      --card-shadow: 0 4px 32px rgba(0,0,0,0.45);
+      --card-hover:  0 12px 48px rgba(212,160,48,0.30);
+      --navbar-bg:   rgba(13,12,10,0.97);
+      --hero-overlay: rgba(0,0,0,0.55);
+      --modal-bg:    rgba(0,0,0,0.80);
+      --section-bg:  #161410;
     }
+
+    /* ──────────────────────────────────────────
+       RESET & BASE
+    ────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -54,262 +71,601 @@
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.35s, color 0.35s;
       overflow-x: hidden;
     }
 
-    /* ─── NAVBAR ─── */
+    /* ──────────────────────────────────────────
+       SCROLLBAR
+    ────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg3); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold2); }
+
+    /* ──────────────────────────────────────────
+       NAVBAR
+    ────────────────────────────────────────── */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: var(--navbar-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
-      height: 64px;
+      height: 66px;
       display: flex; align-items: center;
-      padding: 0 20px;
-      gap: 12px;
-      transition: background 0.3s, border-color 0.3s;
+      padding: 0 24px;
+      gap: 14px;
+      transition: background 0.35s, border-color 0.35s;
     }
     .navbar-logo {
       display: flex; align-items: center; gap: 10px;
-      text-decoration: none; cursor: pointer;
-      flex-shrink: 0;
+      text-decoration: none; cursor: pointer; flex-shrink: 0;
     }
     .navbar-logo img {
-      height: 40px; width: 40px; object-fit: contain; border-radius: 8px;
+      height: 44px; width: 44px; object-fit: contain; border-radius: 10px;
     }
     .navbar-logo-text {
-      font-size: 20px; font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), #a78bfa);
+      font-size: 20px; font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      white-space: nowrap;
+      background-clip: text; white-space: nowrap;
     }
     .navbar-spacer { flex: 1; }
+    .navbar-links {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .navbar-link {
+      background: none; border: none; cursor: pointer;
+      padding: 7px 14px; border-radius: 10px;
+      font-size: 13px; font-weight: 600; color: var(--text2);
+      transition: background 0.2s, color 0.2s; white-space: nowrap;
+      font-family: inherit;
+    }
+    .navbar-link:hover { background: var(--primary-light); color: var(--gold); }
     .navbar-actions { display: flex; align-items: center; gap: 8px; }
     .theme-btn {
-      background: var(--primary-light);
-      border: none; cursor: pointer;
+      background: var(--primary-light); border: none; cursor: pointer;
       width: 40px; height: 40px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--primary); font-size: 16px;
-      transition: background 0.2s, transform 0.2s;
-      flex-shrink: 0;
+      color: var(--gold); font-size: 16px;
+      transition: background 0.2s, transform 0.2s; flex-shrink: 0;
     }
-    .theme-btn:hover { background: var(--primary); color: #fff; transform: scale(1.1); }
+    .theme-btn:hover { background: var(--gold); color: #fff; transform: scale(1.1); }
     .admin-btn {
-      background: var(--primary-light);
-      border: none; cursor: pointer;
+      background: var(--primary-light); border: none; cursor: pointer;
       padding: 8px 16px; border-radius: 20px;
       display: flex; align-items: center; gap: 6px;
-      color: var(--primary); font-size: 13px; font-weight: 600;
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
+      color: var(--gold); font-size: 13px; font-weight: 600;
+      transition: background 0.2s, color 0.2s; white-space: nowrap;
     }
-    .admin-btn:hover { background: var(--primary); color: #fff; }
-
-    /* ─── MAIN CONTENT ─── */
-    .main-content {
-      margin-top: 64px;
-      padding: 0;
-      min-height: calc(100vh - 64px);
+    .admin-btn:hover { background: var(--gold); color: #0d0c0a; }
+    @media (max-width: 768px) {
+      .navbar-links { display: none; }
+      .navbar { padding: 0 14px; }
+      .admin-btn span { display: none; }
     }
 
-    /* ─── HOME VIEW ─── */
-    #view-home {
-      display: block;
-    }
+    /* ──────────────────────────────────────────
+       MAIN CONTENT
+    ────────────────────────────────────────── */
+    .main-content { margin-top: 66px; }
+
+    /* ──────────────────────────────────────────
+       HERO SECTION
+    ────────────────────────────────────────── */
+    #view-home { display: block; }
     .hero {
-      background: linear-gradient(135deg, var(--primary) 0%, #a78bfa 50%, #06d6a0 100%);
-      padding: 60px 20px 50px;
-      text-align: center;
       position: relative; overflow: hidden;
+      height: calc(100vh - 66px);
+      min-height: 560px;
+      display: flex; align-items: center; justify-content: center;
     }
-    .hero::before {
+    .hero-video-wrap {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-video {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: var(--hero-overlay);
+    }
+    /* dark gradient at bottom for smooth transition */
+    .hero-overlay::after {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 60%),
-                  radial-gradient(circle at 70% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
     }
-    .hero-content { position: relative; z-index: 1; }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 24px;
+      max-width: 800px;
+    }
     .hero-logo {
-      width: 90px; height: 90px; object-fit: contain;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.2);
-      padding: 8px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
+      width: 100px; height: 100px; object-fit: contain;
+      border-radius: 22px;
+      background: rgba(212,160,48,0.10);
+      padding: 6px;
+      box-shadow: 0 8px 40px rgba(212,160,48,0.35);
+      margin-bottom: 24px;
+      animation: fadeInDown 0.8s ease both;
     }
     .hero h1 {
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 800; color: #fff;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.15);
-      margin-bottom: 10px;
+      font-size: clamp(32px, 6vw, 62px);
+      font-weight: 900; letter-spacing: -1px;
+      color: #fff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      margin-bottom: 14px;
+      animation: fadeInUp 0.9s ease 0.15s both;
     }
-    .hero p {
-      font-size: clamp(14px, 2.5vw, 18px);
-      color: rgba(255,255,255,0.88);
-      max-width: 500px; margin: 0 auto;
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(14px, 2.5vw, 19px);
+      color: rgba(255,255,255,0.85);
+      max-width: 520px; margin: 0 auto 32px;
+      line-height: 1.6;
+      animation: fadeInUp 0.9s ease 0.28s both;
+    }
+    .hero-cta {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center;
+      animation: fadeInUp 0.9s ease 0.4s both;
+    }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #0d0c0a; border: none; border-radius: 14px;
+      padding: 13px 28px; font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none; font-family: inherit;
+      box-shadow: 0 4px 20px rgba(212,160,48,0.40);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,160,48,0.55); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12);
+      color: #fff; border: 1.5px solid rgba(255,255,255,0.40);
+      border-radius: 14px;
+      padding: 13px 28px; font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: background 0.2s, border-color 0.2s;
+      text-decoration: none; font-family: inherit;
+      backdrop-filter: blur(6px);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.20); border-color: rgba(255,255,255,0.70); }
+    .hero-scroll {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll span { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 1px; }
+    .hero-scroll i { color: var(--gold); font-size: 18px; }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── SECTION CARDS ─── */
-    .sections-container {
-      padding: 40px 20px;
+    /* ──────────────────────────────────────────
+       QUICK LINKS (Sürətli Keçid)
+    ────────────────────────────────────────── */
+    .quick-links-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+    .quick-links-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap;
+    }
+    .ql-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--gold);
+      white-space: nowrap; margin-right: 6px;
+    }
+    .ql-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--primary-light); color: var(--gold);
+      border: 1px solid var(--border); border-radius: 22px;
+      padding: 7px 16px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+      white-space: nowrap; font-family: inherit; text-decoration: none;
+    }
+    .ql-btn:hover { background: var(--gold); color: #0d0c0a; border-color: var(--gold); transform: translateY(-1px); }
+
+    /* ──────────────────────────────────────────
+       SECTION WRAPPER
+    ────────────────────────────────────────── */
+    .section-wrapper {
+      padding: 80px 24px;
       max-width: 1100px; margin: 0 auto;
     }
-    .section-title {
-      font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--text3);
-      margin-bottom: 16px; margin-top: 32px;
+    .section-header {
+      text-align: center; margin-bottom: 56px;
     }
-    .section-title:first-child { margin-top: 0; }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 18px;
-      margin-bottom: 8px;
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary-light);
+      color: var(--gold);
+      border: 1px solid rgba(212,160,48,0.25);
+      border-radius: 22px;
+      padding: 6px 18px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .section-title-main {
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800; letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .section-title-main span {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-desc {
+      font-size: 16px; color: var(--text2); max-width: 560px;
+      margin: 0 auto; line-height: 1.7;
+    }
+    .section-divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 2px; margin: 20px auto 0;
     }
 
-    /* ─── CARD ─── */
+    /* ──────────────────────────────────────────
+       STATISTICS
+    ────────────────────────────────────────── */
+    .stats-section {
+      background: var(--section-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px;
+    }
+    .stats-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 32px 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .stat-item:hover { transform: translateY(-6px); box-shadow: var(--card-hover); }
+    .stat-num {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 900; letter-spacing: -2px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1;
+      margin-bottom: 8px; display: block;
+    }
+    .stat-label {
+      font-size: 15px; font-weight: 600; color: var(--text);
+      margin-bottom: 4px;
+    }
+    .stat-sub { font-size: 12px; color: var(--text3); }
+    @media (max-width: 640px) {
+      .stats-inner { grid-template-columns: 1fr; gap: 16px; }
+      .stat-item { padding: 24px 16px; }
+    }
+
+    /* ──────────────────────────────────────────
+       SERVICES SECTION
+    ────────────────────────────────────────── */
+    .services-bg {
+      background: var(--bg);
+    }
+    .services-nav {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 48px;
+    }
+    .svc-tab {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg2); color: var(--text2);
+      border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 10px 22px; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.22s; font-family: inherit;
+    }
+    .svc-tab:hover { border-color: var(--gold); color: var(--gold); background: var(--primary-light); }
+    .svc-tab.active {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #0d0c0a; border-color: var(--gold);
+      box-shadow: 0 4px 18px rgba(212,160,48,0.35);
+    }
+
+    /* Service Panel */
+    .svc-panel { display: none; }
+    .svc-panel.active { display: block; }
+
+    /* Service info banner */
+    .svc-info-banner {
+      background: linear-gradient(135deg, rgba(212,160,48,0.12), rgba(212,160,48,0.05));
+      border: 1px solid rgba(212,160,48,0.25);
+      border-radius: 16px; padding: 20px 24px;
+      margin-bottom: 32px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .svc-info-banner i { color: var(--gold); font-size: 20px; margin-top: 2px; flex-shrink: 0; }
+    .svc-info-banner .sib-text { flex: 1; }
+    .svc-info-banner .sib-text h4 {
+      font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px;
+    }
+    .svc-info-banner .sib-text p {
+      font-size: 13px; color: var(--text2); line-height: 1.6;
+    }
+    .demo-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(212,160,48,0.20);
+      color: var(--gold); border-radius: 8px;
+      padding: 3px 10px; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.5px; margin-top: 8px;
+    }
+
+    /* Cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
     .card {
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: var(--card-shadow);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s;
+      border-radius: 20px; overflow: hidden;
+      cursor: pointer; box-shadow: var(--card-shadow);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
       position: relative;
     }
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       box-shadow: var(--card-hover);
-      border-color: var(--primary);
+      border-color: var(--gold);
     }
     .card:active { transform: translateY(-2px); }
-    .card-thumbnail {
-      width: 100%; height: 160px;
-      background: var(--bg3);
-      position: relative; overflow: hidden;
-    }
-    .card-thumb-iframe {
-      width: 250%; height: 250%;
-      border: none; pointer-events: none;
-      transform: scale(0.4);
-      transform-origin: top left;
-      position: absolute; top: 0; left: 0;
-    }
-    .card-thumb-overlay {
-      position: absolute; inset: 0;
-      background: transparent;
-      z-index: 2;
+    .card-thumb {
+      width: 100%; height: 168px;
+      background: var(--bg3); position: relative; overflow: hidden;
     }
     .card-thumb-icon {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 48px;
-      z-index: 3;
+      font-size: 52px;
       background: linear-gradient(135deg, var(--primary-light), transparent);
     }
-    .card-body { padding: 18px 18px 20px; }
+    .card-thumb-img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .card-body { padding: 20px 20px 22px; }
     .card-tag {
-      display: inline-block;
-      font-size: 11px; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 700;
       letter-spacing: 0.8px; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 20px;
-      margin-bottom: 10px;
+      padding: 4px 10px; border-radius: 20px; margin-bottom: 10px;
     }
-    .tag-restoran { background: rgba(255,107,107,0.12); color: #ff6b6b; }
-    .tag-tehsil { background: rgba(6,214,160,0.12); color: #06d6a0; }
-    .tag-biznes { background: rgba(255,209,102,0.14); color: #e5a000; }
-    .card-name {
-      font-size: 17px; font-weight: 700; color: var(--text);
-      margin-bottom: 6px; line-height: 1.3;
-    }
-    .card-desc {
-      font-size: 13px; color: var(--text2); line-height: 1.5;
-      margin-bottom: 14px;
-    }
+    .tag-sayt { background: rgba(212,160,48,0.15); color: var(--gold); }
+    .tag-qr   { background: rgba(48,192,128,0.14); color: #30c080; }
+    .tag-smm  { background: rgba(224,80,48,0.14);  color: #e05030; }
+    .tag-qrafik { background: rgba(80,128,224,0.14); color: #5080e0; }
+    .tag-3d   { background: rgba(160,80,224,0.14); color: #a050e0; }
+    .card-name { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
+    .card-desc { font-size: 13px; color: var(--text2); line-height: 1.55; margin-bottom: 14px; }
     .card-open-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      background: var(--primary-light);
-      color: var(--primary);
+      background: var(--primary-light); color: var(--gold);
       border: none; border-radius: 10px;
-      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      padding: 9px 18px; font-size: 13px; font-weight: 600;
       cursor: pointer; transition: background 0.2s, color 0.2s;
+      font-family: inherit;
     }
-    .card-open-btn:hover { background: var(--primary); color: #fff; }
-    .card-open-btn i { font-size: 11px; }
+    .card-open-btn:hover { background: var(--gold); color: #0d0c0a; }
 
-    /* ─── ABOUT SECTION ─── */
-    .about-section {
-      margin: 0; padding: 40px 20px;
-      background: var(--bg3);
-      border-top: 1px solid var(--border);
+    /* QR menu image card */
+    .qr-image-card {
+      background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden; box-shadow: var(--card-shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
-    .about-inner {
-      max-width: 700px; margin: 0 auto; text-align: center;
+    .qr-image-card:hover { transform: translateY(-4px); box-shadow: var(--card-hover); }
+    .qr-image-card img {
+      width: 100%; display: block; max-height: 500px;
+      object-fit: contain; background: #fff;
     }
-    .about-inner h2 {
-      font-size: clamp(22px, 4vw, 32px);
-      font-weight: 800; color: var(--text);
-      margin-bottom: 14px;
+    .qr-image-card .qr-caption {
+      padding: 16px 20px;
     }
-    .about-inner p {
-      font-size: 16px; color: var(--text2); line-height: 1.7;
-      margin-bottom: 30px;
+    .qr-image-card .qr-caption h4 {
+      font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
-    .contact-cards {
-      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    .qr-image-card .qr-caption p {
+      font-size: 13px; color: var(--text2);
+    }
+
+    /* SMM, Graphic, 3D placeholder cards */
+    .svc-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .svc-feature-card {
+      background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .svc-feature-card:hover { transform: translateY(-5px); box-shadow: var(--card-hover); border-color: var(--gold); }
+    .sfc-icon {
+      width: 64px; height: 64px; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin: 0 auto 18px;
+    }
+    .sfc-icon-smm { background: rgba(224,80,48,0.14); color: #e05030; }
+    .sfc-icon-qrafik { background: rgba(80,128,224,0.14); color: #5080e0; }
+    .sfc-icon-3d { background: rgba(160,80,224,0.14); color: #a050e0; }
+    .sfc-icon-gold { background: rgba(212,160,48,0.14); color: var(--gold); }
+    .svc-feature-card h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .svc-feature-card p { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+    .svc-contact-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--primary-light); color: var(--gold);
+      border: none; border-radius: 10px; padding: 9px 18px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: background 0.2s, color 0.2s; font-family: inherit;
+      text-decoration: none;
+    }
+    .svc-contact-btn:hover { background: var(--gold); color: #0d0c0a; }
+
+    /* ──────────────────────────────────────────
+       ABOUT SECTION
+    ────────────────────────────────────────── */
+    .about-bg { background: var(--section-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-logo-box {
+      background: linear-gradient(135deg, rgba(212,160,48,0.12), rgba(212,160,48,0.04));
+      border: 1px solid rgba(212,160,48,0.25); border-radius: 28px;
+      padding: 48px; display: flex; align-items: center; justify-content: center;
+    }
+    .about-logo-box img {
+      width: 200px; height: 200px; object-fit: contain;
+    }
+    .about-text h2 {
+      font-size: clamp(24px, 3.5vw, 38px); font-weight: 800;
+      color: var(--text); margin-bottom: 16px; line-height: 1.2;
+    }
+    .about-text h2 span {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .about-text p {
+      font-size: 16px; color: var(--text2); line-height: 1.75; margin-bottom: 14px;
+    }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .about-tag {
+      background: var(--primary-light); color: var(--gold);
+      border: 1px solid rgba(212,160,48,0.20);
+      border-radius: 22px; padding: 5px 14px;
+      font-size: 12px; font-weight: 600;
+    }
+    @media (max-width: 760px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ──────────────────────────────────────────
+       CONTACT SECTION
+    ────────────────────────────────────────── */
+    .contact-bg { background: var(--bg); }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px;
+      margin-top: 0;
     }
     .contact-card {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 14px;
       background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 14px; padding: 14px 20px;
+      border-radius: 18px; padding: 22px 20px;
       text-decoration: none; color: var(--text);
-      font-size: 14px; font-weight: 500;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-      min-width: 180px;
-    }
-    .contact-card:hover {
-      transform: translateY(-3px);
       box-shadow: var(--card-shadow);
-      border-color: var(--primary);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
     }
-    .contact-card .cc-icon {
-      width: 38px; height: 38px; border-radius: 10px;
+    .contact-card:hover { transform: translateY(-4px); box-shadow: var(--card-hover); border-color: var(--gold); }
+    .cc-icon {
+      width: 48px; height: 48px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; flex-shrink: 0;
+      font-size: 20px; flex-shrink: 0;
     }
     .cc-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
     .cc-wa { background: #25d366; color: #fff; }
-    .contact-card .cc-label { font-size: 11px; color: var(--text3); }
-    .contact-card .cc-val { font-size: 14px; font-weight: 600; color: var(--text); }
+    .cc-tg { background: #0088cc; color: #fff; }
+    .cc-mail { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #0d0c0a; }
+    .cc-label { font-size: 11px; color: var(--text3); margin-bottom: 3px; font-weight: 500; }
+    .cc-val { font-size: 14px; font-weight: 700; color: var(--text); }
 
-    /* ─── DETAIL VIEW ─── */
+    /* ──────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-logo {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-bottom: 14px;
+    }
+    .footer-logo img { width: 36px; height: 36px; object-fit: contain; border-radius: 8px; }
+    .footer-logo span {
+      font-size: 18px; font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    footer p {
+      font-size: 13px; color: var(--text3);
+    }
+    .footer-links {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      justify-content: center; margin-bottom: 20px;
+    }
+    .footer-links a {
+      font-size: 13px; color: var(--text2); text-decoration: none; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ──────────────────────────────────────────
+       DETAIL VIEW (Iframe)
+    ────────────────────────────────────────── */
     #view-detail { display: none; }
     .detail-header {
-      position: sticky; top: 64px; z-index: 50;
+      position: sticky; top: 66px; z-index: 50;
       background: var(--navbar-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
-      padding: 10px 20px;
+      padding: 11px 22px;
       display: flex; align-items: center; gap: 14px;
     }
     .back-btn {
-      display: flex; align-items: center; gap: 6px;
-      background: var(--primary-light); color: var(--primary);
+      display: flex; align-items: center; gap: 7px;
+      background: var(--primary-light); color: var(--gold);
       border: none; border-radius: 10px;
-      padding: 8px 14px; font-size: 13px; font-weight: 600;
+      padding: 9px 16px; font-size: 13px; font-weight: 600;
       cursor: pointer; transition: background 0.2s, color 0.2s;
-      flex-shrink: 0;
-      white-space: nowrap;
+      flex-shrink: 0; white-space: nowrap; font-family: inherit;
     }
-    .back-btn:hover { background: var(--primary); color: #fff; }
+    .back-btn:hover { background: var(--gold); color: #0d0c0a; }
     .detail-title {
-      font-size: 16px; font-weight: 700; color: var(--text);
+      font-size: 15px; font-weight: 700; color: var(--text);
       flex: 1; min-width: 0;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
@@ -317,32 +673,26 @@
       display: flex; align-items: center; gap: 6px;
       background: linear-gradient(135deg, #25d366, #128c7e);
       color: #fff; border: none; border-radius: 10px;
-      padding: 8px 16px; font-size: 13px; font-weight: 600;
+      padding: 9px 18px; font-size: 13px; font-weight: 600;
       cursor: pointer; transition: opacity 0.2s, transform 0.2s;
-      white-space: nowrap; flex-shrink: 0;
+      white-space: nowrap; flex-shrink: 0; font-family: inherit;
     }
     .order-btn:hover { opacity: 0.9; transform: scale(1.03); }
     .iframe-container {
-      width: 100%;
-      height: calc(100vh - 64px - 58px);
-      background: var(--iframe-bg);
-      position: relative;
+      width: 100%; height: calc(100vh - 66px - 56px);
+      background: var(--bg3); position: relative;
     }
-    .site-iframe {
-      width: 100%; height: 100%;
-      border: none; display: block;
-    }
+    .site-iframe { width: 100%; height: 100%; border: none; display: block; }
     .iframe-loading {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      background: var(--iframe-bg);
-      gap: 14px; z-index: 5;
+      background: var(--bg3); gap: 14px; z-index: 5;
     }
-    .iframe-loading .spin {
-      width: 44px; height: 44px; border-radius: 50%;
+    .spin {
+      width: 48px; height: 48px; border-radius: 50%;
       border: 4px solid var(--border);
-      border-top-color: var(--primary);
+      border-top-color: var(--gold);
       animation: spin 0.8s linear infinite;
     }
     .iframe-loading p { font-size: 14px; color: var(--text2); }
@@ -351,43 +701,41 @@
       position: absolute; inset: 0;
       display: none; flex-direction: column;
       align-items: center; justify-content: center;
-      background: var(--iframe-bg); gap: 14px; z-index: 4;
+      background: var(--bg3); gap: 14px; z-index: 4;
       padding: 20px; text-align: center;
     }
-    .iframe-error i { font-size: 40px; color: var(--text3); }
-    .iframe-error p { font-size: 14px; color: var(--text2); max-width: 320px; }
+    .iframe-error i { font-size: 44px; color: var(--text3); }
+    .iframe-error p { font-size: 14px; color: var(--text2); max-width: 340px; }
     .iframe-error a {
       display: inline-flex; align-items: center; gap: 6px;
-      background: var(--primary); color: #fff;
-      border-radius: 10px; padding: 10px 20px;
-      text-decoration: none; font-size: 14px; font-weight: 600;
+      background: var(--gold); color: #0d0c0a;
+      border-radius: 12px; padding: 11px 22px;
+      text-decoration: none; font-size: 14px; font-weight: 700;
+    }
+    @media (max-width: 480px) {
+      .detail-title { display: none; }
+      .detail-header { gap: 8px; padding: 8px 12px; }
+      .order-btn span { display: none; }
     }
 
-    /* ─── ADMIN MODAL ─── */
+    /* ──────────────────────────────────────────
+       ADMIN MODAL
+    ────────────────────────────────────────── */
     .modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 2000;
       background: var(--modal-bg);
-      backdrop-filter: blur(4px);
-      align-items: center; justify-content: center;
-      padding: 20px;
+      backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 20px;
     }
     .modal-overlay.active { display: flex; }
     .modal {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 22px; padding: 36px;
       width: 100%; max-width: 380px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-      position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.30); position: relative;
     }
-    .modal h2 {
-      font-size: 20px; font-weight: 700; color: var(--text);
-      margin-bottom: 6px; text-align: center;
-    }
-    .modal p.modal-sub {
-      font-size: 13px; color: var(--text3); text-align: center; margin-bottom: 24px;
-    }
+    .modal h2 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 6px; text-align: center; }
+    .modal p.modal-sub { font-size: 13px; color: var(--text3); text-align: center; margin-bottom: 26px; }
     .modal-close {
       position: absolute; top: 14px; right: 14px;
       background: var(--bg3); border: none; border-radius: 8px;
@@ -396,132 +744,107 @@
     }
     .modal-close:hover { background: var(--accent); color: #fff; }
     .form-group { margin-bottom: 16px; }
-    .form-group label {
-      display: block; font-size: 12px; font-weight: 600;
-      color: var(--text2); margin-bottom: 6px; letter-spacing: 0.5px;
-    }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 7px; }
     .form-group input {
-      width: 100%; padding: 11px 14px;
+      width: 100%; padding: 12px 15px;
       background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 10px; font-size: 14px; color: var(--text);
-      outline: none; transition: border-color 0.2s;
-      font-family: inherit;
+      border-radius: 11px; font-size: 14px; color: var(--text);
+      outline: none; transition: border-color 0.2s; font-family: inherit;
     }
-    .form-group input:focus { border-color: var(--primary); }
-    .form-error {
-      font-size: 12px; color: var(--accent);
-      margin-bottom: 12px; display: none; text-align: center;
-    }
+    .form-group input:focus { border-color: var(--gold); }
+    .form-error { font-size: 12px; color: var(--accent); margin-bottom: 12px; display: none; text-align: center; }
     .btn-primary {
-      width: 100%; padding: 12px;
-      background: linear-gradient(135deg, var(--primary), #a78bfa);
-      color: #fff; border: none; border-radius: 12px;
-      font-size: 15px; font-weight: 600; cursor: pointer;
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #0d0c0a; border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
       font-family: inherit; transition: opacity 0.2s, transform 0.2s;
     }
     .btn-primary:hover { opacity: 0.9; transform: scale(1.01); }
 
-    /* ─── ADMIN PANEL ─── */
+    /* ──────────────────────────────────────────
+       ADMIN PANEL
+    ────────────────────────────────────────── */
     #view-admin { display: none; }
     .admin-layout {
       display: grid; grid-template-columns: 220px 1fr;
-      height: calc(100vh - 64px);
+      height: calc(100vh - 66px);
     }
     .admin-sidebar {
       background: var(--bg2); border-right: 1px solid var(--border);
-      padding: 24px 16px; display: flex; flex-direction: column; gap: 8px;
+      padding: 24px 14px; display: flex; flex-direction: column; gap: 6px;
+      overflow-y: auto;
     }
     .admin-sidebar h3 {
       font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
       text-transform: uppercase; color: var(--text3);
-      padding: 0 12px; margin-bottom: 8px; margin-top: 8px;
+      padding: 0 10px; margin-bottom: 6px; margin-top: 12px;
     }
     .admin-sidebar h3:first-child { margin-top: 0; }
     .admin-nav-btn {
       display: flex; align-items: center; gap: 10px;
       background: none; border: none; cursor: pointer;
       padding: 10px 12px; border-radius: 10px;
-      font-size: 14px; font-weight: 500; color: var(--text2);
+      font-size: 13px; font-weight: 500; color: var(--text2);
       transition: background 0.2s, color 0.2s; text-align: left; width: 100%;
+      font-family: inherit;
     }
-    .admin-nav-btn:hover, .admin-nav-btn.active {
-      background: var(--primary-light); color: var(--primary);
-    }
+    .admin-nav-btn:hover, .admin-nav-btn.active { background: var(--primary-light); color: var(--gold); }
     .admin-nav-btn i { width: 18px; text-align: center; }
     .admin-logout-btn {
       margin-top: auto;
       display: flex; align-items: center; gap: 10px;
       background: none; border: 1px solid var(--border);
       cursor: pointer; padding: 10px 12px; border-radius: 10px;
-      font-size: 14px; color: var(--accent); transition: background 0.2s;
+      font-size: 13px; color: var(--accent); transition: background 0.2s;
+      font-family: inherit;
     }
-    .admin-logout-btn:hover { background: rgba(255,107,107,0.1); }
-    .admin-main {
-      padding: 30px; overflow-y: auto; background: var(--bg);
-    }
+    .admin-logout-btn:hover { background: rgba(224,80,48,0.10); }
+    .admin-main { padding: 30px; overflow-y: auto; background: var(--bg); }
     .admin-section { display: none; }
     .admin-section.active { display: block; }
-    .admin-section h2 {
-      font-size: 22px; font-weight: 700; color: var(--text);
-      margin-bottom: 20px;
+    .admin-section h2 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+    .admin-stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px; margin-bottom: 24px;
     }
-    .note-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 16px; padding: 24px;
-      margin-bottom: 16px; position: relative;
-    }
-    .note-card h3 {
-      font-size: 14px; font-weight: 700; color: var(--text3);
-      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px;
-    }
-    .note-content {
-      font-size: 16px; color: var(--text); line-height: 1.6;
-      background: var(--bg3); border-radius: 10px; padding: 16px;
-      border: 1px solid var(--border);
-    }
-    .admin-stats {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px; margin-bottom: 24px;
-    }
-    .stat-card {
+    .admin-stat-card {
       background: var(--bg2); border: 1px solid var(--border);
       border-radius: 14px; padding: 20px; text-align: center;
     }
-    .stat-card .stat-num {
-      font-size: 28px; font-weight: 800; color: var(--primary);
+    .admin-stat-card .asn {
+      font-size: 28px; font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .stat-card .stat-label {
-      font-size: 12px; color: var(--text3); margin-top: 4px;
+    .admin-stat-card .asl { font-size: 12px; color: var(--text3); margin-top: 4px; }
+    .note-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; margin-bottom: 14px;
     }
-
-    /* ─── RESPONSIVE ─── */
+    .note-card h3 { font-size: 12px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+    .note-content {
+      font-size: 15px; color: var(--text); line-height: 1.65;
+      background: var(--bg3); border-radius: 10px; padding: 14px 16px;
+      border: 1px solid var(--border);
+    }
     @media (max-width: 640px) {
-      .navbar { padding: 0 14px; gap: 8px; }
-      .navbar-logo-text { font-size: 17px; }
-      .admin-btn span { display: none; }
-      .hero { padding: 40px 14px 36px; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .sections-container { padding: 28px 14px; }
-      .about-section { padding: 30px 14px; }
-      .contact-cards { flex-direction: column; }
-      .contact-card { min-width: 0; width: 100%; }
-      .detail-title { display: none; }
       .admin-layout { grid-template-columns: 1fr; }
-      .admin-sidebar { flex-direction: row; flex-wrap: wrap; padding: 12px; border-right: none; border-bottom: 1px solid var(--border); height: auto; }
+      .admin-sidebar { flex-direction: row; flex-wrap: wrap; padding: 10px; border-right: none; border-bottom: 1px solid var(--border); height: auto; }
       .admin-sidebar h3 { width: 100%; }
-      .admin-main { padding: 20px 14px; }
+      .admin-main { padding: 18px 14px; }
       .admin-logout-btn { margin-top: 0; }
     }
-    @media (max-width: 420px) {
-      .order-btn span { display: none; }
-      .detail-header { gap: 8px; padding: 8px 12px; }
-    }
 
-    /* ─── SCROLL BAR ─── */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg3); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+    /* ──────────────────────────────────────────
+       ANIMATIONS
+    ────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -529,13 +852,19 @@
 <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
 <nav class="navbar">
   <div class="navbar-logo" onclick="goHome()">
-    <img id="nav-logo" src="logo.svg" alt="Nexora" onerror="this.style.display='none'" />
+    <img src="nexora-logo.png" alt="Nexora Foundation" onerror="this.src='logo.svg'" />
     <span class="navbar-logo-text">Nexora</span>
   </div>
   <div class="navbar-spacer"></div>
+  <div class="navbar-links">
+    <button class="navbar-link" onclick="scrollToSection('stats')">Statistika</button>
+    <button class="navbar-link" onclick="scrollToSection('services')">Xidmətlər</button>
+    <button class="navbar-link" onclick="scrollToSection('about')">Haqqında</button>
+    <button class="navbar-link" onclick="scrollToSection('contact')">Əlaqə</button>
+  </div>
   <div class="navbar-actions">
     <button class="theme-btn" onclick="toggleTheme()" title="Tema dəyiş">
-      <i id="theme-icon" class="fas fa-moon"></i>
+      <i id="theme-icon" class="fas fa-sun"></i>
     </button>
     <button class="admin-btn" onclick="openAdminModal()">
       <i class="fas fa-lock"></i>
@@ -549,40 +878,321 @@
 
   <!-- ──────── HOME VIEW ──────── -->
   <div id="view-home">
-    <section class="hero">
+
+    <!-- ★ HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-video-wrap">
+        <video
+          class="hero-video"
+          autoplay muted loop playsinline
+          preload="auto"
+          poster="nexora-logo.png"
+        >
+          <source src="hero-video.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-overlay"></div>
       <div class="hero-content">
-        <img id="hero-logo" src="logo.svg" alt="Nexora" class="hero-logo" onerror="this.style.display='none'" />
-        <h1>Nexora Foundation</h1>
-        <p>Restoran, Təhsil və Biznes xidmətlərini bir platformada kəşf edin</p>
+        <img src="nexora-logo.png" alt="Nexora Foundation" class="hero-logo" onerror="this.src='logo.svg'" />
+        <h1>Nexora <span>Foundation</span></h1>
+        <p class="hero-sub">Rəqəmsal dünyada güclü iz buraxın — saytlar, QR menyular, SMM, dizayn və 3D modelləşmə</p>
+        <div class="hero-cta">
+          <button class="btn-gold" onclick="scrollToSection('services')">
+            <i class="fas fa-rocket"></i> Xidmətlərə bax
+          </button>
+          <button class="btn-outline" onclick="scrollToSection('contact')">
+            <i class="fas fa-envelope"></i> Əlaqə saxla
+          </button>
+        </div>
+      </div>
+      <div class="hero-scroll" onclick="scrollToSection('stats')">
+        <span>AŞAĞI</span>
+        <i class="fas fa-chevron-down"></i>
       </div>
     </section>
 
-    <div class="sections-container">
-
-      <!-- RESTORAN -->
-      <div class="section-title">🍽️ Restoran</div>
-      <div class="cards-grid" id="grid-restoran"></div>
-
-      <!-- TƏHSİL -->
-      <div class="section-title">🎓 Təhsil</div>
-      <div class="cards-grid" id="grid-tehsil"></div>
-
-      <!-- BİZNES -->
-      <div class="section-title">💼 Biznes</div>
-      <div class="cards-grid" id="grid-biznes"></div>
-
+    <!-- ★ QUICK LINKS -->
+    <div class="quick-links-section">
+      <div class="quick-links-inner">
+        <span class="ql-label"><i class="fas fa-bolt"></i> Sürətli Keçid</span>
+        <button class="ql-btn" onclick="scrollToSection('stats')"><i class="fas fa-chart-bar"></i> Statistika</button>
+        <button class="ql-btn" onclick="openServiceTab('saytlar')"><i class="fas fa-globe"></i> Saytlar</button>
+        <button class="ql-btn" onclick="openServiceTab('qr')"><i class="fas fa-qrcode"></i> QR Menyu</button>
+        <button class="ql-btn" onclick="openServiceTab('smm')"><i class="fas fa-share-alt"></i> SMM</button>
+        <button class="ql-btn" onclick="openServiceTab('qrafik')"><i class="fas fa-paint-brush"></i> Qrafik Dizayn</button>
+        <button class="ql-btn" onclick="openServiceTab('3d')"><i class="fas fa-cube"></i> 3D Modelləşmə</button>
+        <button class="ql-btn" onclick="scrollToSection('about')"><i class="fas fa-info-circle"></i> Haqqında</button>
+        <a class="ql-btn" href="https://wa.me/994559406018" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
     </div>
 
-    <!-- HAQQINDA / ƏLAQƏ -->
-    <section class="about-section">
-      <div class="about-inner">
-        <h2>Salam, Biz Nexora</h2>
-        <p>
-          Nexora Foundation olaraq müxtəlif sahələrdə keyfiyyətli xidmətlər təqdim edirik.
-          Restoran, Təhsil və Biznes istiqamətlərindəki platformalarımızla sizə daha yaxşı
-          bir gələcək qurumağa yardım edirik.
-        </p>
-        <div class="contact-cards">
+    <!-- ★ STATISTICS -->
+    <section class="stats-section" id="stats">
+      <div class="stats-inner fade-in">
+        <div class="stat-item">
+          <span class="stat-num" id="stat1">0</span>
+          <div class="stat-label">Aktiv Sayt</div>
+          <div class="stat-sub">Canlı yayımda olan platformalar</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat2">0</span>
+          <div class="stat-label">Məmnun Müştəri</div>
+          <div class="stat-sub">Uğurla tamamlanmış layihələr</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat3">0</span>
+          <div class="stat-label">İl Təcrübə</div>
+          <div class="stat-sub">Rəqəmsal xidmətlər sahəsində</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ★ SERVICES -->
+    <section id="services" class="services-bg">
+      <div class="section-wrapper">
+        <div class="section-header fade-in">
+          <div class="section-eyebrow"><i class="fas fa-star"></i> Xidmətlər</div>
+          <h2 class="section-title-main">Nə təklif <span>edirik?</span></h2>
+          <p class="section-desc">Biznesinizi rəqəmsal dünyada güclü şəkildə təmsil etmək üçün kompleks həllər</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <!-- Service tabs -->
+        <div class="services-nav fade-in">
+          <button class="svc-tab active" onclick="switchServiceTab('saytlar')" id="tab-saytlar">
+            <i class="fas fa-globe"></i> Saytlar
+          </button>
+          <button class="svc-tab" onclick="switchServiceTab('qr')" id="tab-qr">
+            <i class="fas fa-qrcode"></i> QR Menyular
+          </button>
+          <button class="svc-tab" onclick="switchServiceTab('smm')" id="tab-smm">
+            <i class="fas fa-share-alt"></i> SMM Xidmətləri
+          </button>
+          <button class="svc-tab" onclick="switchServiceTab('qrafik')" id="tab-qrafik">
+            <i class="fas fa-paint-brush"></i> Qrafik Dizayn
+          </button>
+          <button class="svc-tab" onclick="switchServiceTab('3d')" id="tab-3d">
+            <i class="fas fa-cube"></i> 3D Modelləşmə
+          </button>
+        </div>
+
+        <!-- SAYTLAR panel -->
+        <div class="svc-panel active" id="panel-saytlar">
+          <div class="svc-info-banner">
+            <i class="fas fa-globe"></i>
+            <div class="sib-text">
+              <h4>Sayt Xidməti</h4>
+              <p>Nexora Foundation tərəfindən hazırlanmış canlı veb platformalar. Hər bir sayt müştərinin tələbinə uyğun dizayn edilib, yüksək performanslıdır.</p>
+              <span class="demo-badge"><i class="fas fa-eye"></i> Demo versiyalar mövcuddur — klikləyərək canlı baxın</span>
+            </div>
+          </div>
+
+          <!-- RESTORAN -->
+          <p style="font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;"><i class="fas fa-utensils"></i> &nbsp;Restoran Saytları</p>
+          <div class="cards-grid" id="grid-restoran" style="margin-bottom:36px;"></div>
+
+          <!-- TƏHSİL -->
+          <p style="font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;"><i class="fas fa-graduation-cap"></i> &nbsp;Təhsil Saytları</p>
+          <div class="cards-grid" id="grid-tehsil" style="margin-bottom:36px;"></div>
+
+          <!-- BİZNES -->
+          <p style="font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;"><i class="fas fa-briefcase"></i> &nbsp;Biznes Saytları</p>
+          <div class="cards-grid" id="grid-biznes"></div>
+        </div>
+
+        <!-- QR MENYU panel -->
+        <div class="svc-panel" id="panel-qr">
+          <div class="svc-info-banner">
+            <i class="fas fa-qrcode"></i>
+            <div class="sib-text">
+              <h4>QR Menyu Xidməti</h4>
+              <p>Restoranınız üçün müasir rəqəmsal QR menyu sistemi. Müştərilər QR kodu oxudaraq tam menyu ilə tanış olur, sifariş verə bilir.</p>
+              <span class="demo-badge"><i class="fas fa-info-circle"></i> Nümunə QR menyu aşağıda göstərilib</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;align-items:start;">
+            <div class="qr-image-card">
+              <img src="qr-menu.png" alt="QR Menyu Nümunəsi" loading="lazy" />
+              <div class="qr-caption">
+                <h4>QR Menyu — Demo Nümunə</h4>
+                <p>Restoranınız üçün özelleşdirilmiş QR menyu dizaynı. Scan et, menyu görün.</p>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:18px;">
+              <div class="svc-feature-card" style="text-align:left;padding:24px;">
+                <h3><i class="fas fa-check-circle" style="color:var(--gold);margin-right:8px;"></i>Niyə QR Menyu?</h3>
+                <ul style="margin-top:12px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;">
+                  <li style="font-size:13px;color:var(--text2);display:flex;gap:8px;"><i class="fas fa-arrow-right" style="color:var(--gold);margin-top:3px;"></i> Çap xərclərini sıfıra endirin</li>
+                  <li style="font-size:13px;color:var(--text2);display:flex;gap:8px;"><i class="fas fa-arrow-right" style="color:var(--gold);margin-top:3px;"></i> Menyunu istədiyiniz vaxt yeniləyin</li>
+                  <li style="font-size:13px;color:var(--text2);display:flex;gap:8px;"><i class="fas fa-arrow-right" style="color:var(--gold);margin-top:3px;"></i> Fotolar, qiymətlər, kateqoriyalar</li>
+                  <li style="font-size:13px;color:var(--text2);display:flex;gap:8px;"><i class="fas fa-arrow-right" style="color:var(--gold);margin-top:3px;"></i> Mobil uyğun dizayn</li>
+                  <li style="font-size:13px;color:var(--text2);display:flex;gap:8px;"><i class="fas fa-arrow-right" style="color:var(--gold);margin-top:3px;"></i> Hər dildə dəstək</li>
+                </ul>
+                <a href="https://wa.me/994559406018?text=Salam!%20QR%20menyu%20haqqında%20məlumat%20almaq%20istəyirəm." target="_blank" class="svc-contact-btn" style="margin-top:18px;display:inline-flex;">
+                  <i class="fab fa-whatsapp"></i> Sifariş et
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SMM panel -->
+        <div class="svc-panel" id="panel-smm">
+          <div class="svc-info-banner">
+            <i class="fas fa-share-alt"></i>
+            <div class="sib-text">
+              <h4>SMM (Sosial Media Marketing) Xidməti</h4>
+              <p>Instagram, Facebook, TikTok və digər platformalarda biznesinizi böyüdün. Məzmun yaradılması, hesab idarəetməsi, reklam kampaniyaları.</p>
+              <span class="demo-badge"><i class="fas fa-info-circle"></i> Fərdi paketlər mövcuddur</span>
+            </div>
+          </div>
+          <div class="svc-feature-grid">
+            <div class="svc-feature-card">
+              <div class="sfc-icon sfc-icon-smm"><i class="fab fa-instagram"></i></div>
+              <h3>Instagram İdarəetmə</h3>
+              <p>Peşəkar content, story, reels planlaması və yayımı. Hədəf auditoriyaya çatmaq üçün strategiya.</p>
+              <a href="https://wa.me/994559406018?text=SMM%20xidməti%20haqqında%20məlumat%20almaq%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon sfc-icon-smm"><i class="fab fa-facebook-f"></i></div>
+              <h3>Facebook Marketinq</h3>
+              <p>Hədəflənmiş reklam kampaniyaları, səhifə idarəetməsi, müştəri bazasının genişləndirilməsi.</p>
+              <a href="https://wa.me/994559406018?text=SMM%20xidməti%20haqqında%20məlumat%20almaq%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon sfc-icon-smm"><i class="fab fa-tiktok"></i></div>
+              <h3>TikTok Marketinq</h3>
+              <p>Viral video content, trending challenge-lər, geniş auditoriyaya sürətli çatma imkanı.</p>
+              <a href="https://wa.me/994559406018?text=SMM%20xidməti%20haqqında%20məlumat%20almaq%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon sfc-icon-smm"><i class="fas fa-chart-line"></i></div>
+              <h3>Analitika & Hesabat</h3>
+              <p>Aylıq performans hesabatları, izləyici artımı, engagement statistikaları, ROI analizi.</p>
+              <a href="https://wa.me/994559406018?text=SMM%20xidməti%20haqqında%20məlumat%20almaq%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- QRAFİK DİZAYN panel -->
+        <div class="svc-panel" id="panel-qrafik">
+          <div class="svc-info-banner">
+            <i class="fas fa-paint-brush"></i>
+            <div class="sib-text">
+              <h4>Qrafik Dizayn Xidməti</h4>
+              <p>Logo, brend ünsiyyəti, sosial media posteri, banner, vizit kart, korporativ şəxsiyyət sənədləri və daha çox.</p>
+              <span class="demo-badge"><i class="fas fa-info-circle"></i> Portfolio nümunələri üçün əlaqə saxlayın</span>
+            </div>
+          </div>
+          <div class="svc-feature-grid">
+            <div class="svc-feature-card">
+              <div class="sfc-icon sfc-icon-qrafik"><i class="fas fa-fingerprint"></i></div>
+              <h3>Logo & Brend Dizayn</h3>
+              <p>Biznesinizin hüviyyətini əks etdirən unikal logo və tam brend korporativ üslub paketləri.</p>
+              <a href="https://wa.me/994559406018?text=Qrafik%20dizayn%20xidməti%20haqqında%20məlumat%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon sfc-icon-qrafik"><i class="fas fa-image"></i></div>
+              <h3>Sosial Media Dizayn</h3>
+              <p>Instagram post, story, reklam banneri, Facebook kapağı — tam uyğunlaşdırılmış ölçülərdə.</p>
+              <a href="https://wa.me/994559406018?text=Qrafik%20dizayn%20xidməti%20haqqında%20məlumat%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon sfc-icon-qrafik"><i class="fas fa-id-card"></i></div>
+              <h3>Çap Materialları</h3>
+              <p>Vizit kart, broşür, flyer, banner, afişa — ofset və rəqəmsal çap üçün hazır fayllar.</p>
+              <a href="https://wa.me/994559406018?text=Qrafik%20dizayn%20xidməti%20haqqında%20məlumat%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon sfc-icon-qrafik"><i class="fas fa-film"></i></div>
+              <h3>Motion Dizayn</h3>
+              <p>Animasiyalı loqo, intro/outro, hərəkətli banner — rəqəmsal platformalar üçün canlı vizual.</p>
+              <a href="https://wa.me/994559406018?text=Qrafik%20dizayn%20xidməti%20haqqında%20məlumat%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D MODELLƏŞMƏ panel -->
+        <div class="svc-panel" id="panel-3d">
+          <div class="svc-info-banner">
+            <i class="fas fa-cube"></i>
+            <div class="sib-text">
+              <h4>3D Modelləşmə Xidməti</h4>
+              <p>Arxitektura vizualizasiyası, məhsul 3D modelləri, oyun aktivləri, reklam animasiyaları — tam 3D həllər.</p>
+              <span class="demo-badge"><i class="fas fa-info-circle"></i> Nümunə işlər üçün əlaqə saxlayın</span>
+            </div>
+          </div>
+          <div class="svc-feature-grid">
+            <div class="svc-feature-card">
+              <div class="sfc-icon" style="background:rgba(160,80,224,0.14);color:#a050e0;"><i class="fas fa-building"></i></div>
+              <h3>Arxitektura Vizualizasiyası</h3>
+              <p>Bina, interyer, eksteryer 3D modelləri. Satışdan əvvəl fotorealistik görüntü yaradın.</p>
+              <a href="https://wa.me/994559406018?text=3D%20modelləşmə%20xidməti%20haqqında%20məlumat%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon" style="background:rgba(160,80,224,0.14);color:#a050e0;"><i class="fas fa-box"></i></div>
+              <h3>Məhsul Modelləri</h3>
+              <p>E-ticarət, reklam, katalog üçün 3D məhsul modelləri — hər bucaqdan mükəmməl görünüş.</p>
+              <a href="https://wa.me/994559406018?text=3D%20modelləşmə%20xidməti%20haqqında%20məlumat%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon" style="background:rgba(160,80,224,0.14);color:#a050e0;"><i class="fas fa-gamepad"></i></div>
+              <h3>Oyun Aktivləri</h3>
+              <p>Low-poly, high-poly 3D aktivlər, texturlar, animasiyalar — Unity, Unreal Engine uyğun.</p>
+              <a href="https://wa.me/994559406018?text=3D%20modelləşmə%20xidməti%20haqqında%20məlumat%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+            <div class="svc-feature-card">
+              <div class="sfc-icon" style="background:rgba(160,80,224,0.14);color:#a050e0;"><i class="fas fa-video"></i></div>
+              <h3>3D Animasiya</h3>
+              <p>Reklam, təqdimat, texniki demo üçün hərəkətli 3D animasiya və render xidməti.</p>
+              <a href="https://wa.me/994559406018?text=3D%20modelləşmə%20xidməti%20haqqında%20məlumat%20istəyirəm." target="_blank" class="svc-contact-btn"><i class="fab fa-whatsapp"></i> Əlaqə</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ★ ABOUT -->
+    <section id="about" class="about-bg">
+      <div class="section-wrapper">
+        <div class="about-grid fade-in">
+          <div class="about-img-wrap">
+            <div class="about-logo-box">
+              <img src="nexora-logo.png" alt="Nexora Foundation" onerror="this.src='logo.svg'" />
+            </div>
+          </div>
+          <div class="about-text">
+            <div class="section-eyebrow"><i class="fas fa-info-circle"></i> Haqqında</div>
+            <h2>Biz kimik? <span>Nexora Foundation</span></h2>
+            <p>
+              Nexora Foundation rəqəmsal xidmətlər sahəsindəki ən mühüm tərəfdaşınızdır. Biz veb saytlardan QR menyu sistemlərinə, SMM xidmətlərindən 3D modelləşməyə qədər geniş çeşidli həllər təqdim edirik.
+            </p>
+            <p>
+              Hər bir layihəyə unikal yanaşma sərgiləyirik — müştərinin biznesi, hədəf auditoriyası və büdcəsi nəzərə alınır. Nəticə: peşəkar, sürətli və effektiv rəqəmsal məhsullar.
+            </p>
+            <div class="about-tags">
+              <span class="about-tag">🌐 Veb Saytlar</span>
+              <span class="about-tag">📱 QR Menyular</span>
+              <span class="about-tag">📊 SMM Xidmətləri</span>
+              <span class="about-tag">🎨 Qrafik Dizayn</span>
+              <span class="about-tag">🧊 3D Modelləşmə</span>
+              <span class="about-tag">⚡ Sürətli Çatdırılma</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ★ CONTACT -->
+    <section id="contact" class="contact-bg">
+      <div class="section-wrapper">
+        <div class="section-header fade-in">
+          <div class="section-eyebrow"><i class="fas fa-envelope"></i> Əlaqə</div>
+          <h2 class="section-title-main">Bizimlə <span>əlaqə saxlayın</span></h2>
+          <p class="section-desc">Layihənizi müzakirə etmək üçün istənilən kanaldan bizə müraciət edin</p>
+          <div class="section-divider"></div>
+        </div>
+        <div class="contact-grid fade-in">
           <a href="https://www.instagram.com/nexora.foundation/" target="_blank" rel="noopener" class="contact-card">
             <div class="cc-icon cc-ig"><i class="fab fa-instagram"></i></div>
             <div>
@@ -597,10 +1207,40 @@
               <div class="cc-val">+994 55 940 60 18</div>
             </div>
           </a>
+          <a href="https://t.me/nexora_foundation" target="_blank" rel="noopener" class="contact-card">
+            <div class="cc-icon cc-tg"><i class="fab fa-telegram"></i></div>
+            <div>
+              <div class="cc-label">Telegram</div>
+              <div class="cc-val">@nexora_foundation</div>
+            </div>
+          </a>
+          <a href="mailto:info@nexorafoundation.az" class="contact-card">
+            <div class="cc-icon cc-mail"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="cc-label">E-poçt</div>
+              <div class="cc-val">info@nexorafoundation.az</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
-  </div>
+
+    <!-- ★ FOOTER -->
+    <footer>
+      <div class="footer-logo">
+        <img src="nexora-logo.png" alt="Nexora" onerror="this.src='logo.svg'" />
+        <span>Nexora Foundation</span>
+      </div>
+      <div class="footer-links">
+        <button onclick="scrollToSection('stats')" style="background:none;border:none;cursor:pointer;font-family:inherit;" class="footer-links"><a href="#stats" onclick="return false;">Statistika</a></button>
+        <button onclick="scrollToSection('services')" style="background:none;border:none;cursor:pointer;font-family:inherit;"><a href="#services" onclick="return false;" style="font-size:13px;color:var(--text2);text-decoration:none;font-weight:500;">Xidmətlər</a></button>
+        <button onclick="scrollToSection('about')" style="background:none;border:none;cursor:pointer;font-family:inherit;"><a href="#about" onclick="return false;" style="font-size:13px;color:var(--text2);text-decoration:none;font-weight:500;">Haqqında</a></button>
+        <button onclick="scrollToSection('contact')" style="background:none;border:none;cursor:pointer;font-family:inherit;"><a href="#contact" onclick="return false;" style="font-size:13px;color:var(--text2);text-decoration:none;font-weight:500;">Əlaqə</a></button>
+      </div>
+      <p>&copy; 2025 Nexora Foundation. Bütün hüquqlar qorunur.</p>
+    </footer>
+
+  </div><!-- end view-home -->
 
   <!-- ──────── DETAIL VIEW (Iframe) ──────── -->
   <div id="view-detail">
@@ -627,7 +1267,14 @@
           <i class="fas fa-external-link-alt"></i> Yeni sekmede aç
         </a>
       </div>
-      <iframe id="main-iframe" class="site-iframe" src="about:blank" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation-by-user-activation" allowfullscreen></iframe>
+      <iframe
+        id="main-iframe"
+        class="site-iframe"
+        src="about:blank"
+        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation-by-user-activation"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
     </div>
   </div>
 
@@ -651,52 +1298,28 @@
         </button>
       </aside>
       <div class="admin-main">
-
         <div class="admin-section active" id="admin-dashboard">
           <h2>Dashboard</h2>
-          <div class="admin-stats">
-            <div class="stat-card">
-              <div class="stat-num">4</div>
-              <div class="stat-label">Restoran</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-num">3</div>
-              <div class="stat-label">Təhsil</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-num">3</div>
-              <div class="stat-label">Biznes</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-num">10</div>
-              <div class="stat-label">Ümumi sayt</div>
-            </div>
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card"><div class="asn">4</div><div class="asl">Restoran</div></div>
+            <div class="admin-stat-card"><div class="asn">3</div><div class="asl">Təhsil</div></div>
+            <div class="admin-stat-card"><div class="asn">3</div><div class="asl">Biznes</div></div>
+            <div class="admin-stat-card"><div class="asn">10</div><div class="asl">Ümumi sayt</div></div>
           </div>
           <div class="note-card">
             <h3><i class="fas fa-info-circle"></i> &nbsp;Məlumat</h3>
-            <div class="note-content">
-              Admin panelinə xoş gəldiniz. Sol menyudan bölmələrə keçid edə bilərsiniz.
-            </div>
+            <div class="note-content">Admin panelinə xoş gəldiniz. Sol menyudan bölmələrə keçid edə bilərsiniz.</div>
           </div>
         </div>
-
         <div class="admin-section" id="admin-notes">
           <h2>Notlar</h2>
-          <div class="note-card">
-            <h3>📝 Not 1</h3>
-            <div class="note-content">salam</div>
-          </div>
-          <div class="note-card">
-            <h3>📝 Not 2</h3>
-            <div class="note-content">pendir</div>
-          </div>
+          <div class="note-card"><h3>📝 Not 1</h3><div class="note-content">salam</div></div>
+          <div class="note-card"><h3>📝 Not 2</h3><div class="note-content">pendir</div></div>
         </div>
-
         <div class="admin-section" id="admin-sites">
           <h2>Saytlar</h2>
           <div id="admin-sites-list"></div>
         </div>
-
       </div>
     </div>
   </div>
@@ -707,7 +1330,7 @@
 <div class="modal-overlay" id="admin-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeAdminModal()"><i class="fas fa-times"></i></button>
-    <h2><i class="fas fa-shield-alt" style="color:var(--primary)"></i> &nbsp;Admin Girişi</h2>
+    <h2><i class="fas fa-shield-alt" style="color:var(--gold)"></i> &nbsp;Admin Girişi</h2>
     <p class="modal-sub">Daxil olmaq üçün məlumatlarınızı daxil edin</p>
     <div class="form-group">
       <label>İstifadəçi adı</label>
@@ -715,7 +1338,8 @@
     </div>
     <div class="form-group">
       <label>Şifrə</label>
-      <input type="password" id="admin-pass" placeholder="••••••" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()" />
+      <input type="password" id="admin-pass" placeholder="••••••" autocomplete="off"
+             onkeydown="if(event.key==='Enter')doLogin()" />
     </div>
     <p class="form-error" id="login-error">İstifadəçi adı və ya şifrə yanlışdır.</p>
     <button class="btn-primary" onclick="doLogin()">Daxil ol</button>
@@ -724,55 +1348,50 @@
 
 <!-- ═══════════════════════ SCRIPT ═══════════════════════ -->
 <script>
-// ──────────────────────────────────────────────
-// DATA
-// ──────────────────────────────────────────────
+/* ════════════════════════════
+   DATA
+════════════════════════════ */
 const SITES = {
   restoran: [
-    { id:'r1', name:'Crepes Bakü', url:'https://crepes-baku.onrender.com/', desc:'Fransız krep mətbəxi', emoji:'🥞' },
-    { id:'r2', name:'Zeytun Restoran', url:'https://zeytunrestoran.onrender.com/', desc:'Azərbaycan milli mətbəxi', emoji:'🫒' },
-    { id:'r3', name:'Sushi GGYO', url:'https://sushi-ggyo.onrender.com/', desc:'Yapon sushi restoranı', emoji:'🍣' },
-    { id:'r4', name:'FHG Restoran', url:'https://fhg-xfcs.onrender.com/', desc:'Seçilmiş mətbəx zövqü', emoji:'🍽️' },
+    { id:'r1', name:'Crepes Bakü',    url:'https://crepes-baku.onrender.com/',  desc:'Fransız krep mətbəxi', emoji:'🥞' },
+    { id:'r2', name:'Zeytun Restoran',url:'https://zeytunrestoran.onrender.com/',desc:'Azərbaycan milli mətbəxi', emoji:'🫒' },
+    { id:'r3', name:'Sushi GGYO',     url:'https://sushi-ggyo.onrender.com/',   desc:'Yapon sushi restoranı', emoji:'🍣' },
+    { id:'r4', name:'FHG Restoran',   url:'https://fhg-xfcs.onrender.com/',     desc:'Seçilmiş mətbəx zövqü', emoji:'🍽️' },
   ],
   tehsil: [
-    { id:'t1', name:'Abify Edu', url:'https://abify-edu.vercel.app/', desc:'Müasir təhsil platforması', emoji:'📚' },
-    { id:'t2', name:'EduUnify', url:'https://edu-unify.vercel.app/', desc:'Birləşdirilmiş təhsil sistemi', emoji:'🎓' },
-    { id:'t3', name:'CareerLands', url:'https://careerlandscuhi.onrender.com/', desc:'Karyera və ixtisaslaşma', emoji:'💡' },
+    { id:'t1', name:'Abify Edu',   url:'https://abify-edu.vercel.app/',       desc:'Müasir təhsil platforması', emoji:'📚' },
+    { id:'t2', name:'EduUnify',    url:'https://edu-unify.vercel.app/',       desc:'Birləşdirilmiş təhsil sistemi', emoji:'🎓' },
+    { id:'t3', name:'CareerLands', url:'https://careerlandscuhi.onrender.com/',desc:'Karyera və ixtisaslaşma', emoji:'💡' },
   ],
   biznes: [
-    { id:'b1', name:'SDS Platforma', url:'https://sddddddddddddddddddd.onrender.com/', desc:'Biznes idarəetmə həlləri', emoji:'📊' },
-    { id:'b2', name:'Berber Studio', url:'https://berber-9ojn.onrender.com/', desc:'Peşəkar berber xidməti', emoji:'✂️' },
-    { id:'b3', name:'RM Solutions', url:'https://rm-falan.onrender.com/', desc:'Resurs idarəetmə sistemi', emoji:'⚙️' },
+    { id:'b1', name:'SDS Platforma',   url:'https://sddddddddddddddddddd.onrender.com/',desc:'Biznes idarəetmə həlləri', emoji:'📊' },
+    { id:'b2', name:'Berber Studio',   url:'https://berber-9ojn.onrender.com/',         desc:'Peşəkar berber xidməti', emoji:'✂️' },
+    { id:'b3', name:'RM Solutions',    url:'https://rm-falan.onrender.com/',            desc:'Resurs idarəetmə sistemi', emoji:'⚙️' },
   ],
 };
 
-const CATEGORY_LABELS = {
-  restoran: 'Restoran',
-  tehsil: 'Təhsil',
-  biznes: 'Biznes',
-};
-
+const CAT_TAG = { restoran:'tag-sayt', tehsil:'tag-sayt', biznes:'tag-sayt' };
 const WA_NUMBER = '994559406018';
 
-// ──────────────────────────────────────────────
-// STATE
-// ──────────────────────────────────────────────
-let currentSite = null;
+/* ════════════════════════════
+   STATE
+════════════════════════════ */
+let currentSite  = null;
 let savedScrollY = 0;
-let isAdmin = false;
+let isAdmin      = false;
 
-// ──────────────────────────────────────────────
-// THEME
-// ──────────────────────────────────────────────
+/* ════════════════════════════
+   THEME — default dark
+════════════════════════════ */
 (function initTheme() {
-  const saved = localStorage.getItem('nexora-theme') || 'light';
+  const saved = localStorage.getItem('nexora-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
   document.getElementById('theme-icon').className =
     saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 })();
 
 function toggleTheme() {
-  const cur = document.documentElement.getAttribute('data-theme');
+  const cur  = document.documentElement.getAttribute('data-theme');
   const next = cur === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('nexora-theme', next);
@@ -780,9 +1399,9 @@ function toggleTheme() {
     next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 }
 
-// ──────────────────────────────────────────────
-// RENDER CARDS
-// ──────────────────────────────────────────────
+/* ════════════════════════════
+   RENDER SITE CARDS
+════════════════════════════ */
 function renderCards() {
   Object.keys(SITES).forEach(cat => {
     const grid = document.getElementById('grid-' + cat);
@@ -795,22 +1414,21 @@ function renderCards() {
       card.setAttribute('tabindex', '0');
       card.setAttribute('aria-label', site.name + ' saytını aç');
       card.innerHTML = `
-        <div class="card-thumbnail">
+        <div class="card-thumb">
           <div class="card-thumb-icon">${site.emoji}</div>
         </div>
         <div class="card-body">
-          <span class="card-tag tag-${cat}">${CATEGORY_LABELS[cat]}</span>
+          <span class="card-tag tag-sayt">Demo Sayt</span>
           <div class="card-name">${site.name}</div>
           <div class="card-desc">${site.desc}</div>
           <button class="card-open-btn" onclick="openSite(event,'${cat}','${site.id}')">
             <i class="fas fa-eye"></i> Aç
           </button>
-        </div>
-      `;
-      card.addEventListener('click', (e) => {
+        </div>`;
+      card.addEventListener('click', e => {
         if (!e.target.closest('.card-open-btn')) openSite(e, cat, site.id);
       });
-      card.addEventListener('keydown', (e) => {
+      card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') openSite(e, cat, site.id);
       });
       grid.appendChild(card);
@@ -818,11 +1436,30 @@ function renderCards() {
   });
 }
 
-// ──────────────────────────────────────────────
-// NAVIGATION — URL NEVER CHANGES
-// ──────────────────────────────────────────────
+/* ════════════════════════════
+   SERVICES TABS
+════════════════════════════ */
+function switchServiceTab(tab) {
+  // deactivate all
+  document.querySelectorAll('.svc-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.svc-panel').forEach(p => p.classList.remove('active'));
+  // activate
+  const tabEl = document.getElementById('tab-' + tab);
+  const panelEl = document.getElementById('panel-' + tab);
+  if (tabEl) tabEl.classList.add('active');
+  if (panelEl) panelEl.classList.add('active');
+}
+
+function openServiceTab(tab) {
+  scrollToSection('services');
+  setTimeout(() => switchServiceTab(tab), 400);
+}
+
+/* ════════════════════════════
+   NAVIGATION
+════════════════════════════ */
 function showView(name) {
-  ['home', 'detail', 'admin'].forEach(v => {
+  ['home','detail','admin'].forEach(v => {
     document.getElementById('view-' + v).style.display = 'none';
   });
   document.getElementById('view-' + name).style.display = 'block';
@@ -839,86 +1476,75 @@ function goHome() {
   });
 }
 
-function goBack() {
-  goHome();
-}
+function goBack() { goHome(); }
 
 function openSite(e, cat, id) {
   e.stopPropagation();
-  const all = Object.values(SITES).flat();
+  const all  = Object.values(SITES).flat();
   const site = all.find(s => s.id === id);
   if (!site) return;
   savedScrollY = window.scrollY;
-  currentSite = { ...site, cat };
+  currentSite  = { ...site, cat };
   document.getElementById('detail-title').textContent = site.name;
-  document.getElementById('iframe-open-link').href = site.url;
+  document.getElementById('iframe-open-link').href    = site.url;
   document.getElementById('iframe-loading').style.display = 'flex';
-  document.getElementById('iframe-error').style.display = 'none';
+  document.getElementById('iframe-error').style.display   = 'none';
   showView('detail');
   window.scrollTo({ top: 0, behavior: 'instant' });
   loadIframe(site.url);
 }
 
-// ──────────────────────────────────────────────
-// IFRAME LOADING
-// ──────────────────────────────────────────────
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const offset = 66 + 8;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+/* ════════════════════════════
+   IFRAME
+════════════════════════════ */
 let iframeTimer = null;
 function loadIframe(url) {
-  const iframe = document.getElementById('main-iframe');
+  const iframe  = document.getElementById('main-iframe');
   const loading = document.getElementById('iframe-loading');
-  const errDiv = document.getElementById('iframe-error');
-
+  const errDiv  = document.getElementById('iframe-error');
   loading.style.display = 'flex';
-  errDiv.style.display = 'none';
+  errDiv.style.display  = 'none';
   iframe.src = 'about:blank';
-
   clearTimeout(iframeTimer);
-
-  // Give a short delay then set src
-  setTimeout(() => {
-    iframe.src = url;
-  }, 100);
-
-  // Timeout fallback - if loading takes more than 12s, show error
+  setTimeout(() => { iframe.src = url; }, 80);
   iframeTimer = setTimeout(() => {
     loading.style.display = 'none';
-    errDiv.style.display = 'flex';
-  }, 12000);
-
+    errDiv.style.display  = 'flex';
+  }, 14000);
   iframe.onload = () => {
     clearTimeout(iframeTimer);
     loading.style.display = 'none';
-    try {
-      // Check if iframe content is accessible (same-origin) - for cross-origin this throws
-      const test = iframe.contentWindow.location.href;
-    } catch(ex) {
-      // Cross-origin but loaded OK
-    }
-    errDiv.style.display = 'none';
+    errDiv.style.display  = 'none';
   };
-
   iframe.onerror = () => {
     clearTimeout(iframeTimer);
     loading.style.display = 'none';
-    errDiv.style.display = 'flex';
+    errDiv.style.display  = 'flex';
   };
 }
 
-// ──────────────────────────────────────────────
-// ORDER BUTTON → WHATSAPP
-// ──────────────────────────────────────────────
+/* ════════════════════════════
+   ORDER (WhatsApp)
+════════════════════════════ */
 function orderNow() {
   if (!currentSite) return;
-  const catLabel = CATEGORY_LABELS[currentSite.cat] || '';
   const msg = encodeURIComponent(
-    `Salam! 👋\n\nMən *${currentSite.name}* saytından sifariş vermək istəyirəm.\n\nKateqoriya: ${catLabel}\nSayt: ${currentSite.url}\n\nXahiş edirəm mənə kömək edəsiniz.`
+    `Salam! 👋\n\nMən *${currentSite.name}* saytından sifariş vermək istəyirəm.\n\nSayt: ${currentSite.url}\n\nXahiş edirəm kömək edəsiniz.`
   );
   window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
 }
 
-// ──────────────────────────────────────────────
-// ADMIN LOGIN
-// ──────────────────────────────────────────────
+/* ════════════════════════════
+   ADMIN
+════════════════════════════ */
 function openAdminModal() {
   document.getElementById('admin-modal').classList.add('active');
   setTimeout(() => document.getElementById('admin-user').focus(), 100);
@@ -940,7 +1566,7 @@ function doLogin() {
     closeAdminModal();
     savedScrollY = window.scrollY;
     showView('admin');
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top:0, behavior:'instant' });
     renderAdminSites();
     document.getElementById('login-error').style.display = 'none';
   } else {
@@ -951,36 +1577,32 @@ function doLogin() {
 function adminLogout() {
   isAdmin = false;
   showView('home');
-  requestAnimationFrame(() => window.scrollTo({ top: savedScrollY, behavior: 'instant' }));
+  requestAnimationFrame(() => window.scrollTo({ top: savedScrollY, behavior:'instant' }));
 }
-
-// ──────────────────────────────────────────────
-// ADMIN NAVIGATION
-// ──────────────────────────────────────────────
 function adminNav(section) {
-  ['dashboard', 'notes', 'sites'].forEach(s => {
+  ['dashboard','notes','sites'].forEach(s => {
     document.getElementById('admin-' + s).classList.remove('active');
     document.getElementById('nav-' + s).classList.remove('active');
   });
   document.getElementById('admin-' + section).classList.add('active');
   document.getElementById('nav-' + section).classList.add('active');
 }
-
 function renderAdminSites() {
   const container = document.getElementById('admin-sites-list');
+  const labels = { restoran:'Restoran', tehsil:'Təhsil', biznes:'Biznes' };
   let html = '';
   Object.keys(SITES).forEach(cat => {
-    html += `<h3 style="font-size:13px;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:20px 0 10px;">${CATEGORY_LABELS[cat]}</h3>`;
+    html += `<h3 style="font-size:12px;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:20px 0 10px;">${labels[cat]}</h3>`;
     SITES[cat].forEach(site => {
       html += `
-        <div class="note-card" style="padding:16px 20px;margin-bottom:10px;">
+        <div class="note-card" style="padding:14px 18px;margin-bottom:10px;">
           <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-            <span style="font-size:22px;">${site.emoji}</span>
+            <span style="font-size:20px;">${site.emoji}</span>
             <div style="flex:1;min-width:0;">
-              <div style="font-weight:600;font-size:15px;color:var(--text);">${site.name}</div>
-              <div style="font-size:12px;color:var(--text3);margin-top:2px;">${site.url}</div>
+              <div style="font-weight:600;font-size:14px;color:var(--text);">${site.name}</div>
+              <div style="font-size:11px;color:var(--text3);margin-top:2px;">${site.url}</div>
             </div>
-            <a href="${site.url}" target="_blank" style="background:var(--primary-light);color:var(--primary);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;">
+            <a href="${site.url}" target="_blank" style="background:var(--primary-light);color:var(--gold);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;">
               <i class="fas fa-external-link-alt"></i> Aç
             </a>
           </div>
@@ -990,11 +1612,55 @@ function renderAdminSites() {
   container.innerHTML = html;
 }
 
-// ──────────────────────────────────────────────
-// INIT
-// ──────────────────────────────────────────────
+/* ════════════════════════════
+   COUNTER ANIMATION
+════════════════════════════ */
+function animateCounter(el, target, suffix) {
+  let current = 0;
+  const step = Math.max(1, Math.ceil(target / 60));
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current + suffix;
+    if (current >= target) clearInterval(timer);
+  }, 22);
+}
+
+/* ════════════════════════════
+   INTERSECTION OBSERVER
+════════════════════════════ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+// Stats counter observer
+const statsObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(document.getElementById('stat1'), 100, '+');
+      animateCounter(document.getElementById('stat2'), 30, '+');
+      animateCounter(document.getElementById('stat3'), 2, '+');
+      statsObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+/* ════════════════════════════
+   INIT
+════════════════════════════ */
 renderCards();
 showView('home');
+
+// observe fade-in elements
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+// observe stats section
+const statsSection = document.querySelector('.stats-section');
+if (statsSection) statsObs.observe(statsSection);
 </script>
 </body>
 </html>
